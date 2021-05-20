@@ -12,6 +12,10 @@ import java.awt.Color;
 import javax.swing.JTextField;
 import java.awt.Font;
 import javax.swing.DropMode;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import javax.swing.SwingConstants;
 
 public class Main extends JFrame {
 	
@@ -19,12 +23,6 @@ public class Main extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField txtAdmin;
-	private JTextField txtMnSch;
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
-	private JTextField textField_3;
-	private JTextField textField_4;
 
 	/**
 	 * Launch the application.
@@ -87,101 +85,97 @@ public class Main extends JFrame {
 		panel_2.add(txtAdmin);
 		txtAdmin.setColumns(10);
 		
-		JPanel panel_3 = new JPanel();
-		panel_3.setBackground(new Color(61, 157, 245));
-		panel_3.setBounds(10, 56, 180, 49);
-		panel_1.add(panel_3);
-		panel_3.setLayout(null);
-		
-		txtMnSch = new JTextField();
-		txtMnSch.setBorder(null);
-		txtMnSch.setForeground(Color.WHITE);
-		txtMnSch.setBackground(new Color(61, 157, 245));
-		txtMnSch.setFont(new Font("Tahoma", Font.PLAIN, 17));
-		txtMnSch.setText("M\u01B0\u1EE3n s\u00E1ch");
-		txtMnSch.setBounds(52, 0, 96, 49);
-		panel_3.add(txtMnSch);
-		txtMnSch.setColumns(10);
-		
-		JPanel panel_3_1 = new JPanel();
-		panel_3_1.setLayout(null);
-		panel_3_1.setBackground(new Color(61, 157, 245));
-		panel_3_1.setBounds(10, 115, 180, 49);
-		panel_1.add(panel_3_1);
-		
-		textField = new JTextField();
-		textField.setBorder(null);
-		textField.setForeground(Color.WHITE);
-		textField.setText("M\u01B0\u1EE3n s\u00E1ch");
-		textField.setFont(new Font("Tahoma", Font.PLAIN, 17));
-		textField.setColumns(10);
-		textField.setBackground(new Color(61, 157, 245));
-		textField.setBounds(52, 0, 96, 49);
-		panel_3_1.add(textField);
-		
-		JPanel panel_3_1_1 = new JPanel();
-		panel_3_1_1.setLayout(null);
-		panel_3_1_1.setBackground(new Color(61, 157, 245));
-		panel_3_1_1.setBounds(10, 175, 180, 49);
-		panel_1.add(panel_3_1_1);
-		
-		textField_1 = new JTextField();
-		textField_1.setBorder(null);
-		textField_1.setForeground(Color.WHITE);
-		textField_1.setText("M\u01B0\u1EE3n s\u00E1ch");
-		textField_1.setFont(new Font("Tahoma", Font.PLAIN, 17));
-		textField_1.setColumns(10);
-		textField_1.setBackground(new Color(61, 157, 245));
-		textField_1.setBounds(52, 0, 96, 49);
-		panel_3_1_1.add(textField_1);
-		
-		JPanel panel_3_1_1_1 = new JPanel();
-		panel_3_1_1_1.setLayout(null);
-		panel_3_1_1_1.setBackground(new Color(61, 157, 245));
-		panel_3_1_1_1.setBounds(10, 234, 180, 49);
-		panel_1.add(panel_3_1_1_1);
-		
-		textField_2 = new JTextField();
-		textField_2.setBorder(null);
-		textField_2.setForeground(Color.WHITE);
-		textField_2.setText("M\u01B0\u1EE3n s\u00E1ch");
-		textField_2.setFont(new Font("Tahoma", Font.PLAIN, 17));
-		textField_2.setColumns(10);
-		textField_2.setBackground(new Color(61, 157, 245));
-		textField_2.setBounds(52, 0, 96, 49);
-		panel_3_1_1_1.add(textField_2);
-		
-		JPanel panel_3_1_1_1_1 = new JPanel();
-		panel_3_1_1_1_1.setLayout(null);
-		panel_3_1_1_1_1.setBackground(new Color(61, 157, 245));
-		panel_3_1_1_1_1.setBounds(10, 294, 180, 49);
-		panel_1.add(panel_3_1_1_1_1);
-		
-		textField_3 = new JTextField();
-		textField_3.setBorder(null);
-		textField_3.setForeground(Color.WHITE);
-		textField_3.setText("M\u01B0\u1EE3n s\u00E1ch");
-		textField_3.setFont(new Font("Tahoma", Font.PLAIN, 17));
-		textField_3.setColumns(10);
-		textField_3.setBackground(new Color(61, 157, 245));
-		textField_3.setBounds(52, 0, 96, 49);
-		panel_3_1_1_1_1.add(textField_3);
-		
 		JPanel panel_3_1_1_1_1_1 = new JPanel();
 		panel_3_1_1_1_1_1.setLayout(null);
 		panel_3_1_1_1_1_1.setBackground(new Color(61, 157, 245));
 		panel_3_1_1_1_1_1.setBounds(10, 353, 180, 49);
 		panel_1.add(panel_3_1_1_1_1_1);
 		
-		textField_4 = new JTextField();
-		textField_4.setBorder(null);
-		textField_4.setForeground(Color.WHITE);
-		textField_4.setText("M\u01B0\u1EE3n s\u00E1ch");
-		textField_4.setFont(new Font("Tahoma", Font.PLAIN, 17));
-		textField_4.setColumns(10);
-		textField_4.setBackground(new Color(61, 157, 245));
-		textField_4.setBounds(52, 0, 96, 49);
-		panel_3_1_1_1_1_1.add(textField_4);
+		JButton btnNewButton = new JButton("\u0110\u0103ng k\u00ED");
+		btnNewButton.setHorizontalAlignment(SwingConstants.LEFT);
+		btnNewButton.setForeground(Color.WHITE);
+		btnNewButton.setBorder(null);
+		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		btnNewButton.setBackground(new Color(61, 157, 245));
+		
+		btnNewButton.setBounds(51, 0, 129, 49);
+		panel_3_1_1_1_1_1.add(btnNewButton);
+		
+		JPanel panel_3_1_1_1_1_1_1 = new JPanel();
+		panel_3_1_1_1_1_1_1.setLayout(null);
+		panel_3_1_1_1_1_1_1.setBackground(new Color(61, 157, 245));
+		panel_3_1_1_1_1_1_1.setBounds(10, 294, 180, 49);
+		panel_1.add(panel_3_1_1_1_1_1_1);
+		
+		JButton btnQunLTi = new JButton("Qu\u1EA3n l\u00FD t\u00E0i kho\u1EA3n");
+		btnQunLTi.setHorizontalAlignment(SwingConstants.LEFT);
+		btnQunLTi.setForeground(Color.WHITE);
+		btnQunLTi.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		btnQunLTi.setBorder(null);
+		btnQunLTi.setBackground(new Color(61, 157, 245));
+		btnQunLTi.setBounds(51, 0, 129, 49);
+		panel_3_1_1_1_1_1_1.add(btnQunLTi);
+		
+		JPanel panel_3_1_1_1_1_1_1_1 = new JPanel();
+		panel_3_1_1_1_1_1_1_1.setLayout(null);
+		panel_3_1_1_1_1_1_1_1.setBackground(new Color(61, 157, 245));
+		panel_3_1_1_1_1_1_1_1.setBounds(10, 235, 180, 49);
+		panel_1.add(panel_3_1_1_1_1_1_1_1);
+		
+		JButton btnNewButton_1_1 = new JButton("Qu\u1EA3n l\u00FD m\u01B0\u1EE3n tr\u1EA3");
+		btnNewButton_1_1.setForeground(Color.WHITE);
+		btnNewButton_1_1.setHorizontalAlignment(SwingConstants.LEFT);
+		btnNewButton_1_1.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		btnNewButton_1_1.setBorder(null);
+		btnNewButton_1_1.setBackground(new Color(61, 157, 245));
+		btnNewButton_1_1.setBounds(51, 0, 129, 49);
+		panel_3_1_1_1_1_1_1_1.add(btnNewButton_1_1);
+		
+		JPanel panel_3_1_1_1_1_1_1_1_1 = new JPanel();
+		panel_3_1_1_1_1_1_1_1_1.setLayout(null);
+		panel_3_1_1_1_1_1_1_1_1.setBackground(new Color(61, 157, 245));
+		panel_3_1_1_1_1_1_1_1_1.setBounds(10, 176, 180, 49);
+		panel_1.add(panel_3_1_1_1_1_1_1_1_1);
+		
+		JButton btnNewButton_1_1_1 = new JButton("Qu\u1EA3n l\u00FD \u0111\u1ED9c gi\u1EA3");
+		btnNewButton_1_1_1.setForeground(Color.WHITE);
+		btnNewButton_1_1_1.setHorizontalAlignment(SwingConstants.LEFT);
+		btnNewButton_1_1_1.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		btnNewButton_1_1_1.setBorder(null);
+		btnNewButton_1_1_1.setBackground(new Color(61, 157, 245));
+		btnNewButton_1_1_1.setBounds(51, 0, 129, 49);
+		panel_3_1_1_1_1_1_1_1_1.add(btnNewButton_1_1_1);
+		
+		JPanel panel_3_1_1_1_1_1_1_1_1_1 = new JPanel();
+		panel_3_1_1_1_1_1_1_1_1_1.setLayout(null);
+		panel_3_1_1_1_1_1_1_1_1_1.setBackground(new Color(61, 157, 245));
+		panel_3_1_1_1_1_1_1_1_1_1.setBounds(10, 117, 180, 49);
+		panel_1.add(panel_3_1_1_1_1_1_1_1_1_1);
+		
+		JButton btnNewButton_1_1_1_1 = new JButton("Qu\u1EA3n l\u00FD s\u00E1ch");
+		btnNewButton_1_1_1_1.setHorizontalAlignment(SwingConstants.LEFT);
+		btnNewButton_1_1_1_1.setForeground(Color.WHITE);
+		btnNewButton_1_1_1_1.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		btnNewButton_1_1_1_1.setBorder(null);
+		btnNewButton_1_1_1_1.setBackground(new Color(61, 157, 245));
+		btnNewButton_1_1_1_1.setBounds(51, 0, 129, 49);
+		panel_3_1_1_1_1_1_1_1_1_1.add(btnNewButton_1_1_1_1);
+		
+		JPanel panel_3_1_1_1_1_1_1_1_1_1_1 = new JPanel();
+		panel_3_1_1_1_1_1_1_1_1_1_1.setForeground(Color.WHITE);
+		panel_3_1_1_1_1_1_1_1_1_1_1.setLayout(null);
+		panel_3_1_1_1_1_1_1_1_1_1_1.setBackground(new Color(61, 157, 245));
+		panel_3_1_1_1_1_1_1_1_1_1_1.setBounds(10, 58, 180, 49);
+		panel_1.add(panel_3_1_1_1_1_1_1_1_1_1_1);
+		
+		JButton btnNewButton_1_1_1_1_1 = new JButton("M\u01B0\u1EE3n s\u00E1ch");
+		btnNewButton_1_1_1_1_1.setHorizontalAlignment(SwingConstants.LEFT);
+		btnNewButton_1_1_1_1_1.setForeground(Color.WHITE);
+		btnNewButton_1_1_1_1_1.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		btnNewButton_1_1_1_1_1.setBorder(null);
+		btnNewButton_1_1_1_1_1.setBackground(new Color(61, 157, 245));
+		btnNewButton_1_1_1_1_1.setBounds(51, 0, 129, 49);
+		panel_3_1_1_1_1_1_1_1_1_1_1.add(btnNewButton_1_1_1_1_1);
 		
 		JLabel lblIonLogo = new JLabel("");
 		lblIonLogo.setBounds(10, 10, 27, 28);
