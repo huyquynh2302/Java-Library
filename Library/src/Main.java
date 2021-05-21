@@ -125,6 +125,14 @@ public class Main extends JFrame {
 		panel_1.add(panel_3_1_1_1_1_1_1);
 		
 		JButton btnQunLTi = new JButton("Qu\u1EA3n l\u00FD t\u00E0i kho\u1EA3n");
+		btnQunLTi.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				children1 = new QLTK();
+				panelMain.removeAll();
+				panelMain.add(children1);
+				panelMain.validate();
+			}
+		});
 		btnQunLTi.setHorizontalAlignment(SwingConstants.LEFT);
 		btnQunLTi.setForeground(Color.WHITE);
 		btnQunLTi.setFont(new Font("Tahoma", Font.PLAIN, 16));
