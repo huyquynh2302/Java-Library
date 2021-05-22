@@ -15,13 +15,13 @@ import javax.swing.JButton;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
-public class QLDG1 extends JPanel {
+public class QLDG extends JPanel {
 	
-	private Image img_search = new ImageIcon(QLDG1.class.getResource("icon/search.png")).getImage().getScaledInstance(24,24,Image.SCALE_SMOOTH);
-	private Image img_plus = new ImageIcon(QLDG1.class.getResource("icon/plus.png")).getImage().getScaledInstance(24,24,Image.SCALE_SMOOTH);
-	private Image img_search_client = new ImageIcon(QLDG1.class.getResource("icon/search-client.png")).getImage().getScaledInstance(24,24,Image.SCALE_SMOOTH);
-	private Image img_edit_property = new ImageIcon(QLDG1.class.getResource("icon/edit-property.png")).getImage().getScaledInstance(24,24,Image.SCALE_SMOOTH);
-	private Image img_trash = new ImageIcon(QLDG1.class.getResource("icon/trash.png")).getImage().getScaledInstance(24,24,Image.SCALE_SMOOTH);
+	private Image img_search = new ImageIcon(QLDG.class.getResource("icon/search.png")).getImage().getScaledInstance(24,24,Image.SCALE_SMOOTH);
+	private Image img_plus = new ImageIcon(QLDG.class.getResource("icon/plus.png")).getImage().getScaledInstance(24,24,Image.SCALE_SMOOTH);
+	private Image img_search_client = new ImageIcon(QLDG.class.getResource("icon/search-client.png")).getImage().getScaledInstance(24,24,Image.SCALE_SMOOTH);
+	private Image img_edit_property = new ImageIcon(QLDG.class.getResource("icon/edit-property.png")).getImage().getScaledInstance(24,24,Image.SCALE_SMOOTH);
+	private Image img_trash = new ImageIcon(QLDG.class.getResource("icon/trash.png")).getImage().getScaledInstance(24,24,Image.SCALE_SMOOTH);
 	
 	private JTextField textField;
 	private JTextField textField_1;
@@ -30,7 +30,7 @@ public class QLDG1 extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public QLDG1() {
+	public QLDG() {
 		setBackground(Color.WHITE);
 		setLayout(null);
 		setBounds(100, 100, 714, 521);
@@ -166,7 +166,6 @@ public class QLDG1 extends JPanel {
 			}
 		));
 		scrollPane.setViewportView(table);
-
 	}
 
 }

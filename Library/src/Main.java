@@ -105,6 +105,10 @@ public class Main extends JFrame {
 		panel_1.add(panel_3_1_1_1_1_1);
 		
 		JButton btnNewButton = new JButton("\u0110\u0103ng k\u00ED");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		btnNewButton.setHorizontalAlignment(SwingConstants.LEFT);
 		btnNewButton.setForeground(Color.WHITE);
 		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 16));
@@ -183,12 +187,13 @@ public class Main extends JFrame {
 		JButton btnNewButton_1_1_1 = new JButton("Qu\u1EA3n l\u00FD \u0111\u1ED9c gi\u1EA3");
 		btnNewButton_1_1_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				children1 = new QLDG1();
+				children1 = new QLDG();
 				panelMain.removeAll();
 				panelMain.add(children1);
 				panelMain.validate();
 			}
 		});
+		
 		btnNewButton_1_1_1.setHorizontalAlignment(SwingConstants.LEFT);
 		btnNewButton_1_1_1.setForeground(Color.WHITE);
 		btnNewButton_1_1_1.setFont(new Font("Tahoma", Font.PLAIN, 16));
