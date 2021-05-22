@@ -11,7 +11,7 @@ import javax.swing.SwingConstants;
 import java.awt.Font;
 import javax.swing.JButton;
 
-public class addDocGia extends JFrame {
+public class themDocGia extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField txtMTh;
@@ -36,7 +36,7 @@ public class addDocGia extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					addDocGia frame = new addDocGia();
+					themDocGia frame = new themDocGia();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -48,7 +48,7 @@ public class addDocGia extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public addDocGia() {
+	public themDocGia() {
 		setTitle("Th\u00EAm \u0111\u1ED9c gi\u1EA3");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 550, 476);

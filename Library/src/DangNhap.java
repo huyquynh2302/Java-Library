@@ -16,7 +16,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Color;
 
-public class Login extends JFrame {
+public class DangNhap extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField txtTnngNhp;
@@ -29,7 +29,7 @@ public class Login extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Login frame = new Login();
+					DangNhap frame = new DangNhap();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -41,7 +41,7 @@ public class Login extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public Login() {
+	public DangNhap() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 828, 500);
 		contentPane = new JPanel();
