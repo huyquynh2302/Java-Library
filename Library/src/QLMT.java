@@ -125,7 +125,7 @@ public class QLMT extends JPanel {
 				{null, null, null, null, null, null, null, null},
 			},
 			new String[] {
-				"Tr\u1EA1ng th\u00E1i", "Th\u1EE7 th\u01B0", "H\u1EA1n tr\u1EA3", " Ng\u00E0y m\u01B0\u1EE3n", "\u0110i\u1EC7n tho\u1EA1i", "M\u00E3 th\u1EBB", "\u0110\u1ED9c gi\u1EA3", "S\u1ED1 TT"
+				"S\u1ED1 TT", "\u0110\u1ED9c gi\u1EA3", "M\u00E3 th\u1EBB", "\u0110i\u1EC7n tho\u1EA1i", "Ng\u00E0y m\u01B0\u1EE3n", "H\u1EA1n tr\u1EA3", "Th\u1EE7 th\u01B0", "Tr\u1EA1ng th\u00E1i"
 			}
 		));
 		scrollPane.setViewportView(table);
