@@ -1,3 +1,5 @@
+import static javax.swing.JOptionPane.showMessageDialog;
+
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
@@ -6,6 +8,9 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+
+import controller.UserController;
+
 import javax.swing.ListSelectionModel;
 import javax.swing.JLabel;
 import java.awt.Font;
@@ -15,6 +20,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JPasswordField;
 
 public class SignUp extends JFrame {
 
@@ -22,10 +28,10 @@ public class SignUp extends JFrame {
 	private JPanel panel;
 	private JLabel lblNewLabel;
 	private JButton btnNewButton;
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
-	private JTextField textField_4;
+	private JTextField txtEmail;
+	private JTextField txtDescription;
+	private JTextField txtUsername;
+	private JPasswordField txtPassword;
 
 	/**
 	 * Launch the application.
@@ -60,73 +66,85 @@ public class SignUp extends JFrame {
 		panel.setLayout(null);
 		
 		btnNewButton = new JButton("T\u1EA1o t\u00E0i kho\u1EA3n");
-		btnNewButton.setFont(new Font("Segoe UI Light", Font.PLAIN, 20));
-		btnNewButton.setBounds(189, 302, 200, 30);
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String username = txtUsername.getText();
+				String email = txtEmail.getText();
+				String password = String.valueOf(txtPassword.getPassword());
+				String description = txtDescription.getText();
+				
+				UserController userControl = new UserController();
+				if(userControl.checkUserToSignUp(username, email, password, description) == "EMPTY FIELD") {
+					showMessageDialog(null, "Vui lòng điền các trường còn trống");
+				} 
+				else if(userControl.checkUserToSignUp(username, email, password, description) == "INVALID OR EXISTED EMAIL")
+					showMessageDialog(null, "Email không hợp lệ");
+				else if(userControl.checkUserToSignUp(username, email, password, description) == "EXISTED EMAIL OR EXISTED USERNAME") {
+					showMessageDialog(null, "Email hoặc tên tài khoản đã được sử dụng");
+				}
+				else if (userControl.addUser(username, email, password, description)) {
+					showMessageDialog(null, "Đăng ký thành công");
+				}
+			}
+		});
+		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		btnNewButton.setBounds(189, 250, 200, 30);
 		panel.add(btnNewButton);
 		
 		JButton btnTrVng = new JButton("Tr\u1EDF v\u1EC1 \u0111\u0103ng nh\u1EADp");
 		btnTrVng.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				JFrame login = new Login();
+				login.setVisible(true);
+				setVisible(false);
 			}
 		});
-		btnTrVng.setFont(new Font("Segoe UI Light", Font.PLAIN, 20));
-		btnTrVng.setBounds(189, 361, 200, 30);
+		btnTrVng.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		btnTrVng.setBounds(189, 312, 200, 30);
 		panel.add(btnTrVng);
 		
-		textField = new JTextField();
-		textField.setBounds(189, 147, 200, 30);
-		panel.add(textField);
-		textField.setColumns(10);
+		txtEmail = new JTextField();
+		txtEmail.setColumns(10);
+		txtEmail.setBounds(189, 104, 200, 30);
+		panel.add(txtEmail);
 		
-		textField_1 = new JTextField();
-		textField_1.setColumns(10);
-		textField_1.setBounds(189, 104, 200, 30);
-		panel.add(textField_1);
+		txtDescription = new JTextField();
+		txtDescription.setColumns(10);
+		txtDescription.setBounds(189, 187, 200, 30);
+		panel.add(txtDescription);
 		
-		textField_2 = new JTextField();
-		textField_2.setColumns(10);
-		textField_2.setBounds(189, 187, 200, 30);
-		panel.add(textField_2);
-		
-		textField_4 = new JTextField();
-		textField_4.setColumns(10);
-		textField_4.setBounds(189, 62, 200, 30);
-		panel.add(textField_4);
+		txtUsername = new JTextField();
+		txtUsername.setColumns(10);
+		txtUsername.setBounds(189, 62, 200, 30);
+		panel.add(txtUsername);
 		
 		JLabel lblNewLabel_1 = new JLabel("T\u00EAn t\u00E0i kho\u1EA3n");
-		lblNewLabel_1.setFont(new Font("Segoe UI Light", Font.PLAIN, 20));
+		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		lblNewLabel_1.setBounds(46, 62, 121, 30);
 		panel.add(lblNewLabel_1);
 		
 		JLabel lblNewLabel_1_1 = new JLabel("Email");
-		lblNewLabel_1_1.setFont(new Font("Segoe UI Light", Font.PLAIN, 20));
+		lblNewLabel_1_1.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		lblNewLabel_1_1.setBounds(46, 104, 121, 30);
 		panel.add(lblNewLabel_1_1);
 		
 		JLabel lblNewLabel_1_2 = new JLabel("M\u1EADt kh\u1EA9u");
-		lblNewLabel_1_2.setFont(new Font("Segoe UI Light", Font.PLAIN, 20));
+		lblNewLabel_1_2.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		lblNewLabel_1_2.setBounds(46, 147, 121, 30);
 		panel.add(lblNewLabel_1_2);
 		
 		JLabel lblNewLabel_1_3 = new JLabel("Ghi ch\u00FA");
-		lblNewLabel_1_3.setFont(new Font("Segoe UI Light", Font.PLAIN, 20));
+		lblNewLabel_1_3.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		lblNewLabel_1_3.setBounds(46, 187, 121, 30);
 		panel.add(lblNewLabel_1_3);
 		
-		JLabel lblNewLabel_1_4 = new JLabel("Ch\u1EE9c v\u1EE5");
-		lblNewLabel_1_4.setFont(new Font("Segoe UI Light", Font.PLAIN, 20));
-		lblNewLabel_1_4.setBounds(46, 227, 121, 30);
-		panel.add(lblNewLabel_1_4);
-		
-		JComboBox comboBox = new JComboBox();
-		comboBox.setFont(new Font("Segoe UI Light", Font.PLAIN, 20));
-		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Admin", "Staff"}));
-		comboBox.setBounds(189, 227, 200, 30);
-		panel.add(comboBox);
+		txtPassword = new JPasswordField();
+		txtPassword.setBounds(189, 144, 200, 30);
+		panel.add(txtPassword);
 		
 		lblNewLabel = new JLabel("T\u1EA1o t\u00E0i kho\u1EA3n m\u1EDBi");
-		lblNewLabel.setFont(new Font("Segoe UI Light", Font.BOLD, 20));
-		lblNewLabel.setBounds(316, 10, 163, 30);
+		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 20));
+		lblNewLabel.setBounds(316, 10, 193, 30);
 		contentPane.add(lblNewLabel);
 	}
 }
