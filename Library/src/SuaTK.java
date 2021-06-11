@@ -3,21 +3,40 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JTable;
 import javax.swing.border.EmptyBorder;
+
+import controllers.StaffController;
+import models.Staff;
+
 import javax.swing.JButton;
 import java.awt.Font;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JComboBox;
+import javax.swing.DefaultComboBoxModel;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class SuaTK extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
-	private JTextField textField_3;
+	public JTextField textMk;
+	public JTextField textEmail;
+	public JTextField textGhiChu;
+	JTextField textName;
+	JComboBox cbChucVu;
+	String matKhau;
+	static String name;
+	static int id;
+	static String email;
+	static String password;
+	static int is_admin;
+	static String description;
 
+//	public Staff staffs = new Staff();
+	public StaffController staffsController = new StaffController();
 	/**
 	 * Launch the application.
 	 */
@@ -25,7 +44,7 @@ public class SuaTK extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					SuaTK frame = new SuaTK();
+					SuaTK frame = new SuaTK(id, name, email, password, is_admin, description);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -36,9 +55,11 @@ public class SuaTK extends JFrame {
 
 	/**
 	 * Create the frame.
+	 * @return 
 	 */
-	public SuaTK() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	
+	public SuaTK(int id, String name, String email, String password, int is_admin, String description) {
+
 		setBounds(100, 100, 592, 472);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -50,34 +71,39 @@ public class SuaTK extends JFrame {
 		contentPane.add(panel, BorderLayout.CENTER);
 		
 		JButton btnLuTiKhon = new JButton("L\u01B0u t\u00E0i kho\u1EA3n");
+		
 		btnLuTiKhon.setFont(new Font("Segoe UI Light", Font.PLAIN, 20));
 		btnLuTiKhon.setBounds(189, 302, 200, 30);
 		panel.add(btnLuTiKhon);
 		
-		JButton btnTrVQun = new JButton("Tr\u1EDF v\u1EC1 qu\u1EA3n l\u00FD t\u00E0i kho\u1EA3n");
-		btnTrVQun.setFont(new Font("Segoe UI Light", Font.PLAIN, 20));
-		btnTrVQun.setBounds(174, 361, 231, 30);
-		panel.add(btnTrVQun);
+		JButton btnTroVe= new JButton("Tr\u1EDF v\u1EC1 qu\u1EA3n l\u00FD t\u00E0i kho\u1EA3n");
+		btnTroVe.setFont(new Font("Segoe UI Light", Font.PLAIN, 20));
+		btnTroVe.setBounds(164, 361, 250, 30);
+		panel.add(btnTroVe);
 		
-		textField = new JTextField();
-		textField.setColumns(10);
-		textField.setBounds(189, 147, 200, 30);
-		panel.add(textField);
+		textMk = new JTextField();
+		textMk.setText(password);
+		textMk.setColumns(10);
+		textMk.setBounds(189, 147, 200, 30);
+		panel.add(textMk);
 		
-		textField_1 = new JTextField();
-		textField_1.setColumns(10);
-		textField_1.setBounds(189, 104, 200, 30);
-		panel.add(textField_1);
+		textEmail = new JTextField();
+		textEmail.setText(email);
+		textEmail.setColumns(10);
+		textEmail.setBounds(189, 104, 200, 30);
+		panel.add(textEmail);
 		
-		textField_2 = new JTextField();
-		textField_2.setColumns(10);
-		textField_2.setBounds(189, 187, 200, 30);
-		panel.add(textField_2);
+		textGhiChu = new JTextField();
+		textGhiChu.setText(description);
+		textGhiChu.setColumns(10);
+		textGhiChu.setBounds(189, 187, 200, 30);
+		panel.add(textGhiChu);
 		
-		textField_3 = new JTextField();
-		textField_3.setColumns(10);
-		textField_3.setBounds(189, 62, 200, 30);
-		panel.add(textField_3);
+		textName = new JTextField();
+		textName.setText(name);
+		textName.setColumns(10);
+		textName.setBounds(189, 62, 200, 30);
+		panel.add(textName);
 		
 		JLabel lblNewLabel_1 = new JLabel("T\u00EAn t\u00E0i kho\u1EA3n");
 		lblNewLabel_1.setFont(new Font("Segoe UI Light", Font.PLAIN, 20));
@@ -104,10 +130,41 @@ public class SuaTK extends JFrame {
 		lblNewLabel_1_4.setBounds(46, 227, 121, 30);
 		panel.add(lblNewLabel_1_4);
 		
-		JComboBox comboBox = new JComboBox();
-		comboBox.setFont(new Font("Segoe UI Light", Font.PLAIN, 20));
-		comboBox.setBounds(189, 227, 200, 30);
-		panel.add(comboBox);
+		cbChucVu = new JComboBox();
+		cbChucVu.setModel(new DefaultComboBoxModel(new String[] {"Qu\u1EA3n l\u00FD", "Nh\u00E2n vi\u00EAn"}));
+		cbChucVu.setSelectedIndex(is_admin);
+		cbChucVu.setFont(new Font("Segoe UI Light", Font.PLAIN, 20));
+		cbChucVu.setBounds(189, 227, 200, 30);
+		panel.add(cbChucVu);
+		
+		btnLuTiKhon.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				int isadmin;
+				if(cbChucVu.getSelectedIndex()==0)
+				{
+					isadmin = 1;
+				}else {
+					isadmin = 0;
+				}
+				Staff staffs = new Staff(id,textName.getText(),textEmail.getText(),textMk.getText(),isadmin,textGhiChu.getText());
+				System.out.println(staffsController.update(staffs));
+//				if (
+//						staffsController.update(staffs)
+//					)
+//				{
+//					System.out.println("Success!");
+//				}
+//				else 
+//				{
+//					System.out.println("Something error!");
+//				}
+			}
+		});
+		
+	}
+
+	public SuaTK() {
+		// TODO Auto-generated constructor stub
 	}
 
 }
