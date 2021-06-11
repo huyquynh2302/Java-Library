@@ -9,7 +9,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
-import controller.UserController;
+import controllers.UserController;
 
 import javax.swing.ListSelectionModel;
 import javax.swing.JLabel;
@@ -22,7 +22,7 @@ import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JPasswordField;
 
-public class SignUp extends JFrame {
+public class ManHinhDangKy extends JFrame {
 
 	private JPanel contentPane;
 	private JPanel panel;
@@ -40,7 +40,7 @@ public class SignUp extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					SignUp frame = new SignUp();
+					ManHinhDangKy frame = new ManHinhDangKy();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -52,7 +52,7 @@ public class SignUp extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public SignUp() {
+	public ManHinhDangKy() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 828, 500);
 		contentPane = new JPanel();
@@ -75,15 +75,15 @@ public class SignUp extends JFrame {
 				
 				UserController userControl = new UserController();
 				if(userControl.checkUserToSignUp(username, email, password, description) == "EMPTY FIELD") {
-					showMessageDialog(null, "Vui lòng điền các trường còn trống");
+					showMessageDialog(null, "Vui lÃ²ng Ä‘iá»�n cÃ¡c trÆ°á»�ng cÃ²n trá»‘ng");
 				} 
 				else if(userControl.checkUserToSignUp(username, email, password, description) == "INVALID OR EXISTED EMAIL")
-					showMessageDialog(null, "Email không hợp lệ");
+					showMessageDialog(null, "Email khÃ´ng há»£p lá»‡");
 				else if(userControl.checkUserToSignUp(username, email, password, description) == "EXISTED EMAIL OR EXISTED USERNAME") {
-					showMessageDialog(null, "Email hoặc tên tài khoản đã được sử dụng");
+					showMessageDialog(null, "Email hoáº·c tÃªn tÃ i khoáº£n Ä‘Ã£ Ä‘Æ°á»£c sá»­ dá»¥ng");
 				}
 				else if (userControl.addUser(username, email, password, description)) {
-					showMessageDialog(null, "Đăng ký thành công");
+					showMessageDialog(null, "Ä�Äƒng kÃ½ thÃ nh cÃ´ng");
 				}
 			}
 		});
@@ -94,7 +94,7 @@ public class SignUp extends JFrame {
 		JButton btnTrVng = new JButton("Tr\u1EDF v\u1EC1 \u0111\u0103ng nh\u1EADp");
 		btnTrVng.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				JFrame login = new Login();
+				JFrame login = new ManHinhDangKy();
 				login.setVisible(true);
 				setVisible(false);
 			}

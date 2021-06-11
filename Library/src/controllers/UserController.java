@@ -1,4 +1,7 @@
-package controller;
+package controllers;
+import java.time.format.DateTimeFormatter;  
+import java.time.LocalDateTime;  
+
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
@@ -13,7 +16,9 @@ public class UserController {
 	
 	public boolean checkUserToLogin(String username, String password)  {
        
-    	String query = "SELECT * FROM Staff WHERE username = '" + username + "' AND password = '"+ password+"'"; 
+    	String query = "SELECT * FROM staffs WHERE staff_name = '" + username + "' AND password = '"+ password+"'"; 
+    	System.out.println(username);
+    	System.out.print(password);
         try {
         	//Connection conn = DBConnect.getConnection();
         	Statement stmt = conn.createStatement();
@@ -29,7 +34,10 @@ public class UserController {
     }
 	
 	public boolean addUser (String username, String email, String password, String description) {
-		String query = "INSERT INTO Staff (username, email, password, description) VALUES('"+username+"', '"+email+"','"+password+"', '"+description+"')";
+		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");  
+		LocalDateTime now = LocalDateTime.now(); 
+		String query = "INSERT INTO staffs (staff_name, email, password,is_admin, description) "
+				+ "VALUES('"+username+"', '"+email+"','"+password+"', 1, '"+description+"')";
 		try {
 			//Connection conn = DBConnect.getConnection();
 			Statement stmt = conn.createStatement();
@@ -50,7 +58,7 @@ public class UserController {
 	
 	public String checkUserToSignUp(String username, String email, String password, String description) {
 		
-		String querycheckExistUsername = "SELECT * FROM Staff WHERE username='"+ username+"' or email='" +email + "'";
+		String querycheckExistUsername = "SELECT * FROM staffs WHERE staff_name='"+ username+"' or email='" +email + "'";
 		String errType1 = "EMPTY FIELD";
 		String errType2 = "INVALID OR EXISTED EMAIL";
 		String errType3 = "EXISTED EMAIL OR EXISTED USERNAME";

@@ -10,7 +10,7 @@ import java.awt.Font;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import controller.UserController;
+import controllers.UserController;
 
 public class DangKy extends JPanel {
 	private JTextField txtUsername;

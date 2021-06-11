@@ -1,6 +1,6 @@
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
-import controller.UserController;
+import controllers.UserController;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -18,7 +18,7 @@ import java.awt.Color;
 import static javax.swing.JOptionPane.showMessageDialog;
 import javax.swing.JPasswordField;
 
-public class Login extends JFrame {
+public class ManHinhDangNhap extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField txtTnngNhp;
@@ -32,7 +32,7 @@ public class Login extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Login frame = new Login();
+					ManHinhDangNhap frame = new ManHinhDangNhap();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -44,7 +44,7 @@ public class Login extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public Login() {
+	public ManHinhDangNhap() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 828, 500);
 		contentPane = new JPanel();
@@ -72,7 +72,7 @@ public class Login extends JFrame {
 				String password = String.valueOf(txtMatKhau.getPassword());
 				UserController loginControl = new UserController();
 				if(loginControl.checkUserToLogin(username, password)) {
-					Main main = new Main();
+					TrangChu main = new TrangChu();
 					showMessageDialog(null, "Đăng nhập thành công");
 					main.setVisible(true);
 					setVisible(false);
@@ -90,7 +90,7 @@ public class Login extends JFrame {
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
-				SignUp signup = new SignUp();
+				ManHinhDangKy signup = new ManHinhDangKy();
 				signup.setVisible(true);
 			}
 		});

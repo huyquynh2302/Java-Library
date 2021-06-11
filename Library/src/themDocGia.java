@@ -8,7 +8,7 @@ import javax.swing.JTable;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 
-import controller.StudentController;
+import controllers.StudentController;
 import models.Student;
 
 import java.awt.Color;
@@ -76,7 +76,7 @@ public class themDocGia extends JFrame {
 		txt_className.setText(className);
 		txt_cellPhone.setText(cellPhone);
 		
-		btn_update.setText(actionType?"Ok":"Chỉnh Sửa");
+		btn_update.setText(actionType?"Ok":"Chỉnh sửa");
 		studentController = new StudentController();
 		
 		if (actionType)

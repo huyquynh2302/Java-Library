@@ -18,15 +18,15 @@ import java.awt.event.ActionEvent;
 import javax.swing.SwingConstants;
 import java.awt.Panel;
 
-public class Main extends JFrame {
+public class TrangChu extends JFrame {
 	
-	private Image img_logo = new ImageIcon(Main.class.getResource("icon/books.png")).getImage().getScaledInstance(24,24,Image.SCALE_SMOOTH);
-	private Image img_book = new ImageIcon(Main.class.getResource("icon/book.png")).getImage().getScaledInstance(24,24,Image.SCALE_SMOOTH);
-	private Image img_course = new ImageIcon(Main.class.getResource("icon/course.png")).getImage().getScaledInstance(24,24,Image.SCALE_SMOOTH);
-	private Image img_user_account = new ImageIcon(Main.class.getResource("icon/account.png")).getImage().getScaledInstance(24,24,Image.SCALE_SMOOTH);
-	private Image img_borrow_book = new ImageIcon(Main.class.getResource("icon/borrow-book.png")).getImage().getScaledInstance(24,24,Image.SCALE_SMOOTH);
-	private Image img_change_user = new ImageIcon(Main.class.getResource("icon/change-user.png")).getImage().getScaledInstance(24,24,Image.SCALE_SMOOTH);
-	private Image img_add_user = new ImageIcon(Main.class.getResource("icon/add-user.png")).getImage().getScaledInstance(24,24,Image.SCALE_SMOOTH);
+	private Image img_logo = new ImageIcon(TrangChu.class.getResource("icon/books.png")).getImage().getScaledInstance(24,24,Image.SCALE_SMOOTH);
+	private Image img_book = new ImageIcon(TrangChu.class.getResource("icon/book.png")).getImage().getScaledInstance(24,24,Image.SCALE_SMOOTH);
+	private Image img_course = new ImageIcon(TrangChu.class.getResource("icon/course.png")).getImage().getScaledInstance(24,24,Image.SCALE_SMOOTH);
+	private Image img_user_account = new ImageIcon(TrangChu.class.getResource("icon/account.png")).getImage().getScaledInstance(24,24,Image.SCALE_SMOOTH);
+	private Image img_borrow_book = new ImageIcon(TrangChu.class.getResource("icon/borrow-book.png")).getImage().getScaledInstance(24,24,Image.SCALE_SMOOTH);
+	private Image img_change_user = new ImageIcon(TrangChu.class.getResource("icon/change-user.png")).getImage().getScaledInstance(24,24,Image.SCALE_SMOOTH);
+	private Image img_add_user = new ImageIcon(TrangChu.class.getResource("icon/add-user.png")).getImage().getScaledInstance(24,24,Image.SCALE_SMOOTH);
 	
 	private JPanel contentPane;
 	private JTextField textField;
@@ -39,7 +39,7 @@ public class Main extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Main frame = new Main();
+					TrangChu frame = new TrangChu();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -51,7 +51,7 @@ public class Main extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public Main() {
+	public TrangChu() {
 		setUndecorated(true);
 		setTitle("Trang ch\u1EE7");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

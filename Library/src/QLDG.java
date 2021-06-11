@@ -1,5 +1,7 @@
 import javax.swing.JPanel;
 
+import static javax.swing.JOptionPane.showMessageDialog;
+
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
@@ -16,6 +18,8 @@ import models.Student;
 import javax.swing.JTextField;
 import java.awt.Font;
 import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.Date;
@@ -24,6 +28,7 @@ import java.util.Vector;
 
 import javax.swing.SwingConstants;
 import javax.swing.JComboBox;
+import javax.swing.JFrame;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
@@ -31,7 +36,8 @@ import javax.swing.JOptionPane;
 import javax.swing.JButton;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
-import controller.StudentController;
+import controllers.StudentController;
+import controllers.UserController;
 
 public class QLDG extends JPanel {
 
@@ -262,6 +268,13 @@ public class QLDG extends JPanel {
 		btnNewButton.setBackground(new Color(61, 157, 245));
 		btnNewButton.setBounds(26, 1, 74, 30);
 		panel_1.add(btnNewButton);
+		
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				JFrame themDocGia = new themDocGia();
+				themDocGia.setVisible(true);
+			}
+		});
 
 		JScrollPane scrpane_view = new JScrollPane();
 		scrpane_view.setFont(new Font("Tahoma", Font.BOLD, 17));
