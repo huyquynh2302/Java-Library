@@ -24,4 +24,8 @@ public class BookCategory {
     public void setBookCateName(String bookCateName) {
         this.bookCateName = bookCateName;
     }
+    @Override
+    public String toString() {
+        return this.bookCateName;
+    }
 }

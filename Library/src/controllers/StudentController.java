@@ -57,6 +57,7 @@ public class StudentController {
 		
 	}
 	
+	
 	public boolean delete(int id) 
 	{
 		String sql = "DELETE FROM " + tableName + " WHERE id = ?";
@@ -129,6 +130,7 @@ public class StudentController {
 				
 				return student;
 			}
+			rs.close();
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -137,6 +139,47 @@ public class StudentController {
 		
 		return null;
 	}
+	
+	public static Student findById(int id)
+	{
+		String sql = "SELECT * FROM  students  WHERE id=" + id;
+		//System.out.print();
+		
+		try {
+			PreparedStatement stmt = conn.prepareStatement(sql);
+			
+			
+			ResultSet rs = stmt.executeQuery(sql);
+			
+			if (rs.next())
+			{
+				
+				Student student = new Student(
+						rs.getInt(1),
+						rs.getString(2),
+						rs.getString(3),
+						rs.getString(4),
+						rs.getInt(5),
+						rs.getDate(6),
+						rs.getString(7),
+						rs.getString(8),
+						rs.getString(9),
+						rs.getString(10)
+						);
+				
+				return student;
+			}
+			rs.close();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return null;
+	}
+	
+
 	
 	public List<Student> findBySearch(String textSearch)
 	{

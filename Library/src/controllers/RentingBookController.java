@@ -6,8 +6,7 @@ import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.List;
+import java.sql.Date;
 
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -19,6 +18,62 @@ import models.Student;
 public class RentingBookController {
 	static Connection conn = DBConnection.connect();
 	public static String tableName = "renting_books";
+	
+	public void add(int studentId, int staffId, int bookId, Date returnDay) { 
+		try {
+			
+			PreparedStatement stmt = conn.prepareStatement("INSERT INTO renting_books (book_id,staff_id,student_id, return_date,createdAt,updatedAt) VALUES(?,?,?,?,?,?)");
+			stmt.setInt(1, bookId);
+			stmt.setInt(2, staffId);
+			stmt.setInt(3, studentId);
+			stmt.setDate(4, returnDay );
+			java.sql.Timestamp date = new java.sql.Timestamp(new java.util.Date().getTime());
+			stmt.setTimestamp(5, date);
+			stmt.setTimestamp(6, date);
+			int row = stmt.executeUpdate();
+			System.out.print(row);
+		}catch(Exception ex) {
+			ex.printStackTrace();
+			
+		}
+	}
+	
+	
+	public void loadRentingBooksByStudentTable(JTable RBTable, int studentId ) {
+		System.out.println(studentId);
+		String sql = "SELECT  rb.id,b.book_name, rb.return_date from books as b, students as s, renting_books as rb where b.id=rb.book_id and rb.student_id=s.id and s.id=" + studentId;
+		try {
+			Statement stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery(sql);
+			ResultSetMetaData md = rs.getMetaData();
+
+			int columnCount = md.getColumnCount();
+			
+            String[] cols = new String[columnCount];
+            DefaultTableModel model = (DefaultTableModel) RBTable.getModel();
+            model.setRowCount(0);
+            int index = 0;
+            while (rs.next())
+            {
+               index++;
+               Object[] row = new Object[4];
+               row[0]=index;
+               row[1]=rs.getInt(1);
+               System.out.println(rs.getInt(1));
+               row[2]=rs.getString(2);
+               System.out.println(rs.getString(2));
+               row[3]=rs.getDate(3);
+               model.addRow(row);
+            }
+            
+           RBTable.setModel(model);
+           model.fireTableDataChanged();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
 	
 	public void loadUITable(JTable UITable)
 	{

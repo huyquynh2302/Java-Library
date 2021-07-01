@@ -6,11 +6,11 @@ public class DBConnection {
 	
 	// Database Connection Information
 	static String hostName = "//127.0.0.1";
-	static String portNumber = "3306";
+	static String portNumber = "3307";
 	static String dbName = "library";
 	static String username = "root";
 	static String password = "";
-	static String JDBC_Driver = "com.mysql.cj.jdbc.Driver";
+	static String JDBC_Driver = "com.mysql.jdbc.Driver";
 	static String url = "jdbc:mysql:"+hostName+":"+portNumber+"/"+dbName;
 	
 	

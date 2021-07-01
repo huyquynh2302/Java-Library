@@ -76,7 +76,7 @@ public class QLDG extends JPanel {
 			rowData[0] = i;
 			rowData[1] = listReader.get(i).getId();
 			rowData[2] = listReader.get(i).getUserName();
-			rowData[3] = listReader.get(i).getGender() == 1 ? "Nam" : "Nữ";
+			rowData[3] = listReader.get(i).getGender() == 1 ? "Nam" : "Ná»¯";
 			rowData[4] = listReader.get(i).getDob();
 			rowData[5] = listReader.get(i).getClassName();
 			rowData[6] = "abc@gmail.com";
@@ -241,7 +241,6 @@ public class QLDG extends JPanel {
 		btn_update.setBackground(new Color(61, 157, 245));
 		btn_update.setBounds(26, 1, 68, 30);
 		panel_1_1.add(btn_update);
-
 		btn_update.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -260,7 +259,7 @@ public class QLDG extends JPanel {
 		panel_1.add(lblIconSearch_1);
 		lblIconSearch_1.setIcon(new ImageIcon(img_plus));
 
-		JButton btnNewButton = new JButton("Thêm");
+		JButton btnNewButton = new JButton("ThÃªm");
 		btnNewButton.setHorizontalAlignment(SwingConstants.LEFT);
 		btnNewButton.setForeground(Color.WHITE);
 		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 15));
