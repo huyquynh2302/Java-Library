@@ -3,6 +3,7 @@ import java.time.format.DateTimeFormatter;
 import java.time.LocalDateTime;  
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.regex.*;
@@ -88,6 +89,25 @@ public class UserController {
 		
 	}
 	
+	public int findLoginUserId(String username) {
+		String query = "Select id from staffs where staff_name='" + username+ "'";
+		try {
+			PreparedStatement stmt = conn.prepareStatement(query);
+			
+			ResultSet rs = stmt.executeQuery();
+			int id =-1;
+			if(rs.next()) {
+				id = rs.getInt(1);
+				System.out.println("Id user: "+ id);
+			}
+			rs.close();
+			return id;
+		} catch (Exception e) {
+			 System.out.println(e);
+			 //conn.close();
+			 return -1;
+		}
+	}
 	public boolean checkEmailValidation(String email){
 		Pattern VALID_EMAIL_ADDRESS_REGEX =  Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
 		Matcher matcher = VALID_EMAIL_ADDRESS_REGEX.matcher(email);

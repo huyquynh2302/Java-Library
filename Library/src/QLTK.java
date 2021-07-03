@@ -7,85 +7,45 @@ import javax.swing.table.DefaultTableModel;
 
 import controllers.StaffController;
 
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+
+import static javax.swing.JOptionPane.showMessageDialog;
 
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.util.ArrayList;
 import java.util.List;
 
 import models.Staff;
+import controllers.StaffController;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JLabel;
+import javax.swing.JComboBox;
 
 public class QLTK extends JPanel {
 	private JTable tbl_data;
-	JFrame children;
+	//JFrame children;
 	private List<String> staff;
 	private JTextField txtMk;
 	private JTextField txtEmail;
 	private JTextField txtGhiChu;
 	private JTextField txtName;
-	String name;
-	int id;
-	String email;
-	String password;
-	int is_admin;
-	String description;
-	String isadmin;
+	
+	private int id=-1;
+	private int isadmin;
 	
 	public int totalAttributeOfClass = 10;
 	public StaffController staffController;
 
 	final boolean VIEW_ACION_TYPE = true;
 	final boolean UPDATE_ACTION_TYPE = false;
-
-	void loadReaders() {
-
-		DefaultTableModel model = (DefaultTableModel) tbl_data.getModel();
-		
-		model.getDataVector().removeAllElements();
-		model.fireTableDataChanged(); // notifies the JTable that the model has changed
-		
-		List<Staff> listReader = staffController.findAll();
-
-		for (int i = 0; i < listReader.size(); i++) {
-			Object rowData[] = new Object[this.totalAttributeOfClass];
-			rowData[0] = listReader.get(i).getId();
-			rowData[1] = listReader.get(i).getUserName();
-			rowData[2] = listReader.get(i).getEmail();
-			rowData[3] = listReader.get(i).getPassword();
-			rowData[4] = listReader.get(i).isAdmin() == 1 ? "true" : "false";
-			rowData[5] = listReader.get(i).getDescription();
-			model.addRow(rowData);
-		}
-
-//		tbl_data.setModel(model);
-	}
-
-//	void loadReadersWithData(List<Staff> listReader)
-//	{
-//		DefaultTableModel model = (DefaultTableModel) tbl_data.getModel();
-//		
-//		// clear all data
-//		model.getDataVector().removeAllElements();
-//		model.fireTableDataChanged(); // notifies the JTable that the model has changed
-//		
-//		for (int i = 0; i < listReader.size(); i++) {
-//			Object rowData[] = new Object[this.totalAttributeOfClass];
-//			rowData[0] = i;
-//			rowData[1] = listReader.get(i).getId();
-//			rowData[2] = listReader.get(i).getUserName();
-//			rowData[3] = listReader.get(i).getEmail();
-//			rowData[4] = listReader.get(i).getPassword();
-//			rowData[5] = listReader.get(i).isAdmin();
-//			rowData[6] = listReader.get(i).getDescription();
-//			model.addRow(rowData);
-//		}
-//	}
+	private JTextField textField_1;
+	private JTextField textField;
+	private JTextField textField_2;
 
 	/**
 	 * Create the panel.
@@ -96,32 +56,34 @@ public class QLTK extends JPanel {
 		
 		JPanel panel_4 = new JPanel();
 		panel_4.setLayout(null);
-		panel_4.setBounds(10, 25, 694, 434);
+		panel_4.setBounds(10, 25, 694, 486);
 		add(panel_4);
 		
 		JButton btnNewButton = new JButton("S\u1EEDa");
 		
 		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 17));
-		btnNewButton.setBounds(205, 37, 100, 30);
+		btnNewButton.setBounds(392, 196, 100, 30);
 		panel_4.add(btnNewButton);
 		
 		JButton btnXoa = new JButton("X\u00F3a");
 		
 		btnXoa.setFont(new Font("Tahoma", Font.PLAIN, 17));
-		btnXoa.setBounds(341, 37, 100, 30);
+		btnXoa.setBounds(536, 196, 100, 30);
 		panel_4.add(btnXoa);
+		
+		JComboBox comboBox = new JComboBox();
+		comboBox.setBounds(146, 180, 136, 21);
+		panel_4.add(comboBox);
+		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Quản lý", "Nhân viên"}));
+		comboBox.setSelectedIndex(-1);
 		
 		JScrollPane scrpane_view = new JScrollPane();
 		scrpane_view.setFont(new Font("Tahoma", Font.BOLD, 17));
 		scrpane_view.setBorder(new LineBorder(Color.BLACK));
-		scrpane_view.setBounds(10, 157, 674, 267);
+		scrpane_view.setBounds(10, 236, 674, 240);
 		panel_4.add(scrpane_view);
 		
-		tbl_data = new JTable() {
-			public boolean editCellAt(int row, int column, java.util.EventObject e) {
-				return false;
-			}
-		};
+		tbl_data = new JTable();
 		tbl_data.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -129,20 +91,18 @@ public class QLTK extends JPanel {
 				int selectedRow = tbl_data.getSelectedRow();
 
 				id = (Integer) tbl_data.getModel().getValueAt(selectedRow, 0);
-				name = (String) tbl_data.getModel().getValueAt(selectedRow, 1);
-				email = (String) tbl_data.getModel().getValueAt(selectedRow, 2);
-				password = (String) tbl_data.getModel().getValueAt(selectedRow, 3);
-				isadmin = (String) tbl_data.getModel().getValueAt(selectedRow, 4);
-				description = (String) tbl_data.getModel().getValueAt(selectedRow, 5);
-				if(isadmin == "true") {
-					is_admin = 0;
+				textField.setText((String) tbl_data.getModel().getValueAt(selectedRow, 1));
+				textField_1.setText((String) tbl_data.getModel().getValueAt(selectedRow, 2));
+				textField_2.setText((String) tbl_data.getModel().getValueAt(selectedRow, 3));
+				
+				String chucVu = (String) tbl_data.getModel().getValueAt(selectedRow, 4);
+				//description = (String) tbl_data.getModel().getValueAt(selectedRow, 5);
+				if(chucVu == "Quản lý") {
+					isadmin = 0;
 				}else {
-					is_admin = 1;
-				}
-				
-				
-				
-				
+					isadmin = 1;
+				}	
+				comboBox.setSelectedIndex(isadmin);
 			}
 		});
 		// scrollPane.setColumnHeaderView(table);
@@ -154,29 +114,85 @@ public class QLTK extends JPanel {
 			new Object[][] {
 			},
 			new String[] {
-				"S\u1ED1 TT", "T\u00EAn t\u00E0i kho\u1EA3n", "Email", "Password", "IsAdmin", "M\u00F4 t\u1EA3"
+				"Mã", "Tên", "Email", "Mô tả", "Chức vụ"
 			}
 		));
 		scrpane_view.setViewportView(tbl_data);
 		
-		loadReaders();
+		staffController.loadStaffTable(tbl_data);
+		
+		textField_1 = new JTextField();
+		textField_1.setColumns(10);
+		textField_1.setBounds(146, 73, 200, 25);
+		panel_4.add(textField_1);
+		
+		textField = new JTextField();
+		textField.setColumns(10);
+		textField.setBounds(146, 26, 200, 25);
+		panel_4.add(textField);
+		
+		textField_2 = new JTextField();
+		textField_2.setColumns(10);
+		textField_2.setBounds(146, 125, 200, 25);
+		panel_4.add(textField_2);
+		
+		JLabel lblNewLabel = new JLabel("Tên");
+		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		lblNewLabel.setBounds(28, 26, 67, 19);
+		panel_4.add(lblNewLabel);
+		
+		JLabel lblEmail = new JLabel("Email");
+		lblEmail.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		lblEmail.setBounds(28, 75, 67, 19);
+		panel_4.add(lblEmail);
+		
+		JLabel lblMT = new JLabel("Mô tả");
+		lblMT.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		lblMT.setBounds(28, 131, 67, 19);
+		panel_4.add(lblMT);
+		
+		JLabel lblChcV = new JLabel("Chức vụ");
+		lblChcV.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		lblChcV.setBounds(28, 180, 67, 19);
+		panel_4.add(lblChcV);
+		
+		
 		
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				SuaTK children = new SuaTK(id,name,email,password,is_admin,description);
-				children.setVisible(true);
+				if(comboBox.getSelectedIndex()==0)
+				{
+					isadmin = 1;
+				}else {
+					isadmin = 0;
+				}
+				if(id != -1) {
+					//Staff staffs = new Staff(id,textField_1.getText(),textField.getText(),textField.getText(), isadmin ,textField.getText());
+					//System.out.println(staffsController.update(staffs));
+					if (staffController.update(id, textField.getText(), textField_1.getText(), textField_2.getText(), isadmin))
+					{
+						
+						showMessageDialog(null, "Sửa tài khoản thành công");
+						staffController.loadStaffTable(tbl_data);
+					}
+					else 
+					{
+						showMessageDialog(null, "Bạn chưa chọn tài khoản để xóa");
+					}}
+				else showMessageDialog(null, "Đã xảy ra lỗi");
 			}
 		});
 		
 		btnXoa.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				staffController = new StaffController();
-				staffController.delete(id);
-				loadReaders();
+				//staffController = new StaffController();
+				if(staffController.delete(id)) {
+					showMessageDialog(null, "Xóa tài khoản thành công");
+					staffController.loadStaffTable(tbl_data);
+				}
+				else showMessageDialog(null, "Đã xảy ra lỗi");
 			}
 		});
 
 	}
-	
-	
 }

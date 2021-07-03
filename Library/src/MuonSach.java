@@ -52,7 +52,8 @@ public class MuonSach extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public MuonSach() {
+	public MuonSach(int staffId) {
+		System.out.print(staffId);
 		setBorder(null);
 		setBackground(Color.WHITE);
 		setLayout(null);
@@ -201,7 +202,7 @@ public class MuonSach extends JPanel {
 				try {
 					Date ngaytra = Date.valueOf(textField_3.getText());
 					int studentId = (int)comboBox.getSelectedItem();
-					
+					System.out.println(staffId);
 					rentingBookController.add(studentId,1,bookId, ngaytra); 
 					JOptionPane.showMessageDialog(null, "Thành công");
 					

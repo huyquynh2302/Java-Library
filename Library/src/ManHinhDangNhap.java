@@ -72,13 +72,16 @@ public class ManHinhDangNhap extends JFrame {
 				String password = String.valueOf(txtMatKhau.getPassword());
 				UserController loginControl = new UserController();
 				if(loginControl.checkUserToLogin(username, password)) {
-					TrangChu main = new TrangChu();
-					showMessageDialog(null, "Đăng nhập thành công");
-					main.setVisible(true);
-					setVisible(false);
+					int id = loginControl.findLoginUserId(username);
+					if(id!=-1) {
+						TrangChu main = new TrangChu(id);
+						showMessageDialog(null, "Ä�Äƒng nháº­p thÃ nh cÃ´ng");
+						main.setVisible(true);
+						setVisible(false);
+					}
 				}
 				else {
-					showMessageDialog(null, "Đăng nhập không thành công");
+					showMessageDialog(null, "Ä�Äƒng nháº­p khÃ´ng thÃ nh cÃ´ng");
 				}
 				
 			}
@@ -109,12 +112,12 @@ public class ManHinhDangNhap extends JFrame {
 		txtMatKhau.setBounds(244, 169, 200, 30);
 		panel.add(txtMatKhau);
 		
-		JLabel lblTnTiKhon = new JLabel("Tên tài khoản");
+		JLabel lblTnTiKhon = new JLabel("TÃªn tÃ i khoáº£n");
 		lblTnTiKhon.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		lblTnTiKhon.setBounds(85, 110, 118, 35);
 		panel.add(lblTnTiKhon);
 		
-		JLabel lblMtKhu = new JLabel("Mật khẩu");
+		JLabel lblMtKhu = new JLabel("Máº­t kháº©u");
 		lblMtKhu.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		lblMtKhu.setBounds(85, 163, 108, 35);
 		panel.add(lblMtKhu);

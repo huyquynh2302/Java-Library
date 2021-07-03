@@ -31,7 +31,7 @@ public class RentingBookController {
 			stmt.setTimestamp(5, date);
 			stmt.setTimestamp(6, date);
 			int row = stmt.executeUpdate();
-			System.out.print(row);
+			//System.out.print(row);
 		}catch(Exception ex) {
 			ex.printStackTrace();
 			
@@ -40,7 +40,7 @@ public class RentingBookController {
 	
 	
 	public void loadRentingBooksByStudentTable(JTable RBTable, int studentId ) {
-		System.out.println(studentId);
+		//System.out.println(studentId);
 		String sql = "SELECT  rb.id,b.book_name, rb.return_date from books as b, students as s, renting_books as rb where b.id=rb.book_id and rb.student_id=s.id and s.id=" + studentId;
 		try {
 			Statement stmt = conn.createStatement();
@@ -59,9 +59,9 @@ public class RentingBookController {
                Object[] row = new Object[4];
                row[0]=index;
                row[1]=rs.getInt(1);
-               System.out.println(rs.getInt(1));
+               //System.out.println(rs.getInt(1));
                row[2]=rs.getString(2);
-               System.out.println(rs.getString(2));
+               //System.out.println(rs.getString(2));
                row[3]=rs.getDate(3);
                model.addRow(row);
             }

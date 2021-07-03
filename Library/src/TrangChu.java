@@ -39,8 +39,8 @@ public class TrangChu extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					TrangChu frame = new TrangChu();
-					frame.setVisible(true);
+//					TrangChu frame = new TrangChu();
+//					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -51,7 +51,8 @@ public class TrangChu extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public TrangChu() {
+	public TrangChu(int id) {
+		
 		setUndecorated(true);
 		setTitle("Trang ch\u1EE7");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -248,7 +249,7 @@ public class TrangChu extends JFrame {
 		JButton btnNewButton_1_1_1_1_1 = new JButton("M\u01B0\u1EE3n s\u00E1ch");
 		btnNewButton_1_1_1_1_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				children1 = new MuonSach();
+				children1 = new MuonSach(id);
 				panelMain.removeAll();
 				panelMain.add(children1);
 				panelMain.validate();
