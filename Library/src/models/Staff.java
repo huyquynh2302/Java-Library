@@ -1,14 +1,12 @@
 package models;
 
 public class Staff {
-	int id;
+    int id;
     String userName;
     String email;
     String password;
     int isAdmin;
     String description;
-    
-    public Staff() {}
 
     public Staff(int id, String userName, String email, String password, int isAdmin, String description) {
         this.id = id;
