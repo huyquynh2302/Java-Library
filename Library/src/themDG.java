@@ -8,6 +8,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 import java.awt.event.ActionListener;
@@ -34,8 +35,8 @@ public class themDG extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					themDG frame = new themDG();
-					frame.setVisible(true);
+//					themDG frame = new themDG();
+//					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -46,7 +47,7 @@ public class themDG extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public themDG() {
+	public themDG(JTable table) {
 //		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 //		setBounds(100, 100, 450, 300);
 //		contentPane = new JPanel();
@@ -102,9 +103,9 @@ public class themDG extends JFrame {
 				Date ngaysinh = Date.valueOf(txt_dob.getText());
 				int gender = (txt_gender.getText()).equals("Nam") ? 1: 0;
 				if(studentController.add( txt_name.getText(), gender , ngaysinh, txt_major.getText(),txt_className.getText(), txt_cellPhone.getText())) {
-					JOptionPane.showMessageDialog(panel, "Thanh cong");
-					QLDG parent = new QLDG();
-				} else JOptionPane.showMessageDialog(null,"Khong thanh cong");
+					JOptionPane.showMessageDialog(panel, "Thành công");
+					studentController.loadStudentTable(table);
+				} else JOptionPane.showMessageDialog(null,"Không thành công");
 			}
 		});
 		btn_update.setForeground(Color.WHITE);

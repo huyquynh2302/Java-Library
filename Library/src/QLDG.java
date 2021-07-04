@@ -57,58 +57,11 @@ public class QLDG extends JPanel {
 	private JTextField btn_search;
 	private JTable tbl_data;
 
-//	public int totalAttributeOfClass = 10;
 	public StudentController studentController;
 
 	final boolean VIEW_ACION_TYPE = true;
 	final boolean UPDATE_ACTION_TYPE = false;
 
-//	void loadReaders() {
-//
-//		DefaultTableModel model = (DefaultTableModel) tbl_data.getModel();
-//		
-//		model.getDataVector().removeAllElements();
-//		model.fireTableDataChanged(); // notifies the JTable that the model has changed
-//		
-//		List<Student> listReader = rentbook.findAll();
-//
-//		for (int i = 0; i < listReader.size(); i++) {
-//			Object rowData[] = new Object[this.totalAttributeOfClass];
-//			rowData[0] = i;
-//			rowData[1] = listReader.get(i).getId();
-//			rowData[2] = listReader.get(i).getUserName();
-//			rowData[3] = listReader.get(i).getGender() == 1 ? "Nam" : "Ná»¯";
-//			rowData[4] = listReader.get(i).getDob();
-//			rowData[5] = listReader.get(i).getClassName();
-//			rowData[6] = "abc@gmail.com";
-//			rowData[6] = listReader.get(i).getContactNumber();
-//			model.addRow(rowData);
-//		}
-//
-//		tbl_data.setModel(model);
-//	}
-
-//	void loadReadersWithData(List<Student> listReader)
-//	{
-//		DefaultTableModel model = (DefaultTableModel) tbl_data.getModel();
-//		
-//		// clear all data
-//		model.getDataVector().removeAllElements();
-//		model.fireTableDataChanged(); // notifies the JTable that the model has changed
-//		
-//		for (int i = 0; i < listReader.size(); i++) {
-//			Object rowData[] = new Object[this.totalAttributeOfClass];
-//			rowData[0] = i;
-//			rowData[1] = listReader.get(i).getId();
-//			rowData[2] = listReader.get(i).getUserName();
-//			rowData[3] = listReader.get(i).getGender() == 1 ? "Nam" : "Nữ";
-//			rowData[4] = listReader.get(i).getDob();
-//			rowData[5] = listReader.get(i).getClassName();
-//			rowData[6] = "abc@gmail.com";
-//			rowData[7] = listReader.get(i).getContactNumber();
-//			model.addRow(rowData);
-//		}
-//	}
 	
 	/**
 	 * Create the panel.
@@ -149,7 +102,6 @@ public class QLDG extends JPanel {
 		btn_search.setHorizontalAlignment(SwingConstants.CENTER);
 		btn_search.setForeground(Color.WHITE);
 		btn_search.setFont(new Font("Tahoma", Font.PLAIN, 15));
-//		btn_search.setColumns(10);
 		btn_search.setBorder(null);
 		btn_search.setBackground(new Color(61, 157, 245));
 		btn_search.setBounds(26, 0, 68, 30);
@@ -162,12 +114,11 @@ public class QLDG extends JPanel {
 				
 				if (textSearch.isEmpty())
 				{
-					JOptionPane.showMessageDialog(panel1,"cannot empty field");
+					JOptionPane.showMessageDialog(panel1,"Chưa nhập từ khóa");
 				}
 				else 
 				{
-					StudentController studentController = new StudentController();
-					//loadReadersWithData(studentController.findBySearch(textSearch));					
+					StudentController studentController = new StudentController();				
 				}
 			}
 		});
@@ -205,20 +156,19 @@ public class QLDG extends JPanel {
 
 				int id = (Integer) tbl_data.getModel().getValueAt(selectedRow, 1);
 				
-	            Object[] options = {"Yes", "No"};
+	            Object[] options = {"Có", "Không"};
 	            Component form = null;
-	            int n = JOptionPane.showOptionDialog(form, "Do you like to delete the record for Student ID: " +
+	            int n = JOptionPane.showOptionDialog(form, "Bạn muốn xóa sinh viên có ID: " +
 	                    id + " ?", "Exit Confirmation", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options);
 	            if(n == JOptionPane.YES_OPTION) {
 	            	if (studentController.delete(id))
 					{
-	            		JOptionPane.showMessageDialog(panel_1_1_1, "The record has been deleted successfully.");
+	            		JOptionPane.showMessageDialog(panel_1_1_1, "Xóa thành công");
 	            		studentController.loadStudentTable(tbl_data);
-	            		//loadReaders();
 					}
 	            	else 
 					{
-	                    JOptionPane.showMessageDialog(panel_1_1_1, "Record couldn't be deleted. Please try again.");
+	                    JOptionPane.showMessageDialog(panel_1_1_1, "Xóa không thành công. Vui lòng thử lại!");
 					} 
 	            }
 			}
@@ -272,7 +222,7 @@ public class QLDG extends JPanel {
 		
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				JFrame themDG = new themDG();
+				JFrame themDG = new themDG(tbl_data);
 				themDG.setVisible(true);
 				themDG.setLocationRelativeTo(null);
 			}
@@ -317,8 +267,8 @@ public class QLDG extends JPanel {
 	}
 
 	public void loadStudentToNewForm(MouseEvent e, int typeClick, boolean typeAction) {
-		if (e.getClickCount() == typeClick) { // to detect doble click events
-//			 	JTable tbl_data = (JTable) e.getSource();
+		if (e.getClickCount() == typeClick) { 
+			// to detect doble click events
 			
 			// Convert to Student on selected row Data of JTable
 			int selectedRow = tbl_data.getSelectedRow();
@@ -326,16 +276,17 @@ public class QLDG extends JPanel {
 			int id = (Integer) tbl_data.getModel().getValueAt(selectedRow, 1);
 			String name = (String) tbl_data.getModel().getValueAt(selectedRow, 2);
 			String gender = (String) tbl_data.getModel().getValueAt(selectedRow, 3);
-			String className = (String) tbl_data.getModel().getValueAt(selectedRow, 5);
+			String className = (String) tbl_data.getModel().getValueAt(selectedRow, 6);
 			String cellPhone = (String) tbl_data.getModel().getValueAt(selectedRow, 7);
 			Date dob = (Date) tbl_data.getModel().getValueAt(selectedRow, 4);
-			String major = (String) tbl_data.getModel().getValueAt(selectedRow, 6);
+			String major = (String) tbl_data.getModel().getValueAt(selectedRow, 5);
 
-			suaDocGia ViewStudentUI = new suaDocGia();
+			suaDocGia ViewStudentUI = new suaDocGia(tbl_data);
 			ViewStudentUI.isViewAction(typeAction);
 			ViewStudentUI.pourDataToFields(id, name, gender, className, cellPhone, dob, major);
 			ViewStudentUI.setVisible(true);
 			ViewStudentUI.setLocationRelativeTo(null);
+
 		}
 	}
 

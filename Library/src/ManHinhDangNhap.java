@@ -55,7 +55,7 @@ public class ManHinhDangNhap extends JFrame {
 		
 		JPanel panel = new JPanel();
 		panel.setBorder(null);
-		panel.setBounds(175, 55, 538, 382);
+		panel.setBounds(134, 10, 538, 382);
 		contentPane.add(panel);
 		panel.setLayout(null);
 		

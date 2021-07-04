@@ -106,6 +106,7 @@ public class TrangChu extends JFrame {
 				JFrame login = new ManHinhDangNhap();
 				login.setVisible(true);
 				setVisible(false);
+				login.setLocationRelativeTo(null);
 			}
 		});
 		lblSignOut.setBounds(140, 10, 32, 32);

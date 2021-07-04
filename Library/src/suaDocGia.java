@@ -35,7 +35,7 @@ public class suaDocGia extends JFrame {
 	private JTextField txt_gender;
 	private JTextField txt_dob;
 	private JTextField txt_className;
-	private JTextField txt_email;
+	private JTextField txt_major;
 	private JTextField txt_cellPhone;
 	private JButton btn_update;
 	
@@ -47,7 +47,7 @@ public class suaDocGia extends JFrame {
 		txt_name.disable();
 		txt_gender.disable();
 		txt_dob.disable();
-		txt_email.disable();
+		txt_major.disable();
 		txt_className.disable();
 		txt_cellPhone.disable();
 	}
@@ -57,18 +57,18 @@ public class suaDocGia extends JFrame {
 		txt_name.enable();
 		txt_gender.enable();
 		txt_dob.enable();
-		txt_email.enable();
+		txt_major.enable();
 		txt_className.enable();
 		txt_cellPhone.enable();
 	}
 	
-	public void pourDataToFields(int id, String name, String gender, String className, String cellPhone, Date dob, String email)
+	public void pourDataToFields(int id, String name, String gender, String className, String cellPhone, Date dob, String major)
 	{
 		txt_id.setText(id +"");
 		txt_name.setText(name);
 		txt_gender.setText(gender);
 		txt_dob.setText(dob.toString());
-		txt_email.setText(email);
+		txt_major.setText(major);
 		txt_className.setText(className);
 		txt_cellPhone.setText(cellPhone);
 		
@@ -93,7 +93,7 @@ public class suaDocGia extends JFrame {
 	// 1 is view
 	// 0 is update
 	
-	public void setUpBtn_update() 
+	public void setUpBtn_update(JTable table) 
 	{
 		if (actionType)
 		{
@@ -104,12 +104,12 @@ public class suaDocGia extends JFrame {
 			Date date= Date.valueOf(txt_dob.getText());
 			String gioitinh = txt_gender.getText();
 			String gender = "Nam";
-			System.out.println(gioitinh.equals(gender));
 			int id = 0;
 			if(gioitinh.equals(gender))
 			{
 				id = 1;
 			}
+	
 			// exute update query
 			Student student = new Student(
 					Integer.parseInt(txt_id.getText()),
@@ -118,24 +118,23 @@ public class suaDocGia extends JFrame {
 					"",
 					id,
 					date,
-					txt_email.getText(),
+					txt_major.getText(),
 					txt_className.getText(),
 					"",
 					txt_cellPhone.getText()
 					);
-			System.out.println(student);
+		
 			if (
 					studentController.update(student)
 				)
 			{
-				JOptionPane.showMessageDialog(this, "Update success");
+				JOptionPane.showMessageDialog(this, "Cập nhật thành công!");
 				this.dispose();
-				QLDG qldg = new QLDG();
-				qldg.setVisible(true);
+				studentController.loadStudentTable(table);
 			}
 			else 
 			{
-				JOptionPane.showMessageDialog(this, "something error");
+				JOptionPane.showMessageDialog(this, "Cập nhật không thành công!");
 			}
 		}
 	}
@@ -148,8 +147,6 @@ public class suaDocGia extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					suaDocGia frame = new suaDocGia();
-					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -160,7 +157,7 @@ public class suaDocGia extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public suaDocGia() {
+	public suaDocGia(JTable table) {
 		setTitle("Th\u00EAm \u0111\u1ED9c gi\u1EA3");
 		setBounds(100, 100, 550, 476);
 		contentPane = new JPanel();
@@ -198,10 +195,10 @@ public class suaDocGia extends JFrame {
 		txt_className.setBounds(225, 221, 208, 32);
 		panel.add(txt_className);
 		
-		txt_email = new JTextField();
-		txt_email.setColumns(10);
-		txt_email.setBounds(225, 271, 208, 32);
-		panel.add(txt_email);
+		txt_major = new JTextField();
+		txt_major.setColumns(10);
+		txt_major.setBounds(225, 271, 208, 32);
+		panel.add(txt_major);
 		
 		txt_cellPhone = new JTextField();
 		txt_cellPhone.setColumns(10);
@@ -254,7 +251,7 @@ public class suaDocGia extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e)
 			{
-				setUpBtn_update();
+				setUpBtn_update(table);
 				
 			}
 		});

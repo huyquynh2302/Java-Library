@@ -52,11 +52,7 @@ public class QuanLiSach extends JPanel {
 	private HashMap<String, String> categoriesMap = new HashMap<String, String>();
 	private HashMap<String, String> categoriesMapRev = new HashMap<String, String>();
 	private String currentAuthorID;
-	private HashMap<String, String> authorsMap = new HashMap<String, String>();
-	private HashMap<String, String> authorsMapRev = new HashMap<String, String>();
 	private String currentNXBID;
-	private HashMap<String, String> NXBsMap = new HashMap<String, String>();
-	private HashMap<String, String> NXBsMapRev = new HashMap<String, String>();
 	
 	public JComboBox<String> comboBox_1_1_1 = new JComboBox<String>();
 	private String currentShelfID;
@@ -197,14 +193,12 @@ public class QuanLiSach extends JPanel {
 						int houseId;
 						if(authorController.getAuthorId(textField_3.getText()) ==- 1) {
 							authorId = authorController.addAuthor(textField_3.getText());
-							//authorId = authorController.getAuthorId(textField_3.getText());
 							System.out.print(" author id: " + authorId);
 						}
 						else authorId = authorController.getAuthorId(textField_3.getText());
 						
 						if(publicationHouseController.getPublicationHouseId(textField_4.getText()) ==-1) {
 							houseId = publicationHouseController.addPublicationHouse(textField_4.getText());
-							//houseId = publicationHouseController.getPublicationHouseId(textField_4.getText());
 							System.out.print( "nxb id: " + houseId);
 						}
 						else houseId = publicationHouseController.getPublicationHouseId(textField_4.getText());
@@ -396,8 +390,6 @@ public class QuanLiSach extends JPanel {
 		loadBooks();
 		loadCategories();
 		loadComboBoxData(); //categories
-//		loadAuthorsComboBoxData();
-//		loadNXBsComboBoxData();
 		loadShelvesComboBoxData();
 	}
 	
@@ -419,41 +411,6 @@ public class QuanLiSach extends JPanel {
 	    }    
 	}
 	
-//	void loadAuthorsComboBoxData() {
-//		Connection conn = DBConnection.connect();
-//		
-//		try {
-//			Statement stmt = conn.createStatement();
-//		ResultSet rs= stmt.executeQuery("select * from authors");
-//	    while(rs.next()){         
-//	    	authorsMap.put(rs.getString(1), rs.getString(2));
-//	    	authorsMapRev.put(rs.getString(2), rs.getString(1));
-//	    	comboBox_1.addItem(rs.getString(2));
-//	    }
-//	    }
-//	    catch(Exception e)
-//	    {
-//	        System.out.println("Error"+e);
-//	    }    
-//	}
-	
-//	void loadNXBsComboBoxData() {
-//		Connection conn = DBConnection.connect();
-//		
-//		try {
-//			Statement stmt = conn.createStatement();
-//		ResultSet rs = stmt.executeQuery("select * from publication_house");
-//	    while(rs.next()){         
-//	    	NXBsMap.put(rs.getString(1), rs.getString(2));
-//	    	NXBsMapRev.put(rs.getString(2), rs.getString(1));
-//	    	comboBox_1_1.addItem(rs.getString(2));
-//	    }
-//	    }
-//	    catch(Exception e)
-//	    {
-//	        System.out.println("Error"+e);
-//	    }    
-//	}
 	
 	void loadShelvesComboBoxData() {
 		Connection conn = DBConnection.connect();

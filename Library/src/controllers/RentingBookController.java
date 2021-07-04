@@ -160,7 +160,7 @@ public class RentingBookController {
 			
             String[] cols = new String[columnCount];
             DefaultTableModel model = (DefaultTableModel) UITable.getModel();
-
+            model.setRowCount(0);
             int index = 0;
             while (rs.next())
             {
