@@ -56,65 +56,65 @@ public class QLDG extends JPanel {
 	private JTextField btn_search;
 	private JTable tbl_data;
 
-	public int totalAttributeOfClass = 10;
-	public StudentController rentbook;
+//	public int totalAttributeOfClass = 10;
+	public StudentController studentController;
 
 	final boolean VIEW_ACION_TYPE = true;
 	final boolean UPDATE_ACTION_TYPE = false;
 
-	void loadReaders() {
-
-		DefaultTableModel model = (DefaultTableModel) tbl_data.getModel();
-		
-		model.getDataVector().removeAllElements();
-		model.fireTableDataChanged(); // notifies the JTable that the model has changed
-		
-		List<Student> listReader = rentbook.findAll();
-
-		for (int i = 0; i < listReader.size(); i++) {
-			Object rowData[] = new Object[this.totalAttributeOfClass];
-			rowData[0] = i;
-			rowData[1] = listReader.get(i).getId();
-			rowData[2] = listReader.get(i).getUserName();
-			rowData[3] = listReader.get(i).getGender() == 1 ? "Nam" : "Ná»¯";
-			rowData[4] = listReader.get(i).getDob();
-			rowData[5] = listReader.get(i).getClassName();
-			rowData[6] = "abc@gmail.com";
-			rowData[7] = listReader.get(i).getContactNumber();
-			model.addRow(rowData);
-		}
-
+//	void loadReaders() {
+//
+//		DefaultTableModel model = (DefaultTableModel) tbl_data.getModel();
+//		
+//		model.getDataVector().removeAllElements();
+//		model.fireTableDataChanged(); // notifies the JTable that the model has changed
+//		
+//		List<Student> listReader = rentbook.findAll();
+//
+//		for (int i = 0; i < listReader.size(); i++) {
+//			Object rowData[] = new Object[this.totalAttributeOfClass];
+//			rowData[0] = i;
+//			rowData[1] = listReader.get(i).getId();
+//			rowData[2] = listReader.get(i).getUserName();
+//			rowData[3] = listReader.get(i).getGender() == 1 ? "Nam" : "Ná»¯";
+//			rowData[4] = listReader.get(i).getDob();
+//			rowData[5] = listReader.get(i).getClassName();
+//			rowData[6] = "abc@gmail.com";
+//			rowData[6] = listReader.get(i).getContactNumber();
+//			model.addRow(rowData);
+//		}
+//
 //		tbl_data.setModel(model);
-	}
+//	}
 
-	void loadReadersWithData(List<Student> listReader)
-	{
-		DefaultTableModel model = (DefaultTableModel) tbl_data.getModel();
-		
-		// clear all data
-		model.getDataVector().removeAllElements();
-		model.fireTableDataChanged(); // notifies the JTable that the model has changed
-		
-		for (int i = 0; i < listReader.size(); i++) {
-			Object rowData[] = new Object[this.totalAttributeOfClass];
-			rowData[0] = i;
-			rowData[1] = listReader.get(i).getId();
-			rowData[2] = listReader.get(i).getUserName();
-			rowData[3] = listReader.get(i).getGender() == 1 ? "Nam" : "Nữ";
-			rowData[4] = listReader.get(i).getDob();
-			rowData[5] = listReader.get(i).getClassName();
-			rowData[6] = "abc@gmail.com";
-			rowData[7] = listReader.get(i).getContactNumber();
-			model.addRow(rowData);
-		}
-	}
+//	void loadReadersWithData(List<Student> listReader)
+//	{
+//		DefaultTableModel model = (DefaultTableModel) tbl_data.getModel();
+//		
+//		// clear all data
+//		model.getDataVector().removeAllElements();
+//		model.fireTableDataChanged(); // notifies the JTable that the model has changed
+//		
+//		for (int i = 0; i < listReader.size(); i++) {
+//			Object rowData[] = new Object[this.totalAttributeOfClass];
+//			rowData[0] = i;
+//			rowData[1] = listReader.get(i).getId();
+//			rowData[2] = listReader.get(i).getUserName();
+//			rowData[3] = listReader.get(i).getGender() == 1 ? "Nam" : "Nữ";
+//			rowData[4] = listReader.get(i).getDob();
+//			rowData[5] = listReader.get(i).getClassName();
+//			rowData[6] = "abc@gmail.com";
+//			rowData[7] = listReader.get(i).getContactNumber();
+//			model.addRow(rowData);
+//		}
+//	}
 	
 	/**
 	 * Create the panel.
 	 */
 	public QLDG() {
 		// logic loading
-		rentbook = new StudentController();
+		studentController = new StudentController();
 
 		setBackground(Color.WHITE);
 		setLayout(null);
@@ -166,7 +166,7 @@ public class QLDG extends JPanel {
 				else 
 				{
 					StudentController studentController = new StudentController();
-					loadReadersWithData(studentController.findBySearch(textSearch));					
+					//loadReadersWithData(studentController.findBySearch(textSearch));					
 				}
 			}
 		});
@@ -212,7 +212,7 @@ public class QLDG extends JPanel {
 	            	if (studentController.delete(id))
 					{
 	            		JOptionPane.showMessageDialog(panel_1_1_1, "The record has been deleted successfully.");
-	            		loadReaders();
+	            		//loadReaders();
 					}
 	            	else 
 					{
@@ -270,8 +270,8 @@ public class QLDG extends JPanel {
 		
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				JFrame themDocGia = new themDocGia();
-				themDocGia.setVisible(true);
+				JFrame themDG = new themDG();
+				themDG.setVisible(true);
 			}
 		});
 
@@ -291,11 +291,10 @@ public class QLDG extends JPanel {
 		tbl_data.setBorder(new LineBorder(new Color(0, 0, 0)));
 		tbl_data.setBounds(10, 134, 694, 377);
 		tbl_data.setModel(new DefaultTableModel(new Object[][] {},
-				new String[] { "S\u1ED1 TT", "M\u00E3 th\u1EBB", "H\u1ECD T\u00EAn", "Gi\u1EDBi t\u00EDnh",
-						"Ng\u00E0y sinh", "L\u1EDBp", "Email", "S\u1ED1 \u0111i\u1EC7n tho\u1EA1i" }));
+				new String[] { "STT", "Mã số", "Họ tên", "Giới tính", "Ngày sinh", "Khoa", "Lớp", "Số liên lạc" }));
 		scrpane_view.setViewportView(tbl_data);
-
-		loadReaders();
+		studentController.loadStudentTable(tbl_data);
+		//loadReaders();
 
 		tbl_data.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
@@ -319,23 +318,22 @@ public class QLDG extends JPanel {
 			String className = (String) tbl_data.getModel().getValueAt(selectedRow, 5);
 			String cellPhone = (String) tbl_data.getModel().getValueAt(selectedRow, 7);
 			Date dob = (Date) tbl_data.getModel().getValueAt(selectedRow, 4);
-			String email = (String) tbl_data.getModel().getValueAt(selectedRow, 6);
+			String major = (String) tbl_data.getModel().getValueAt(selectedRow, 6);
 
 			themDocGia ViewStudentUI = new themDocGia();
 			ViewStudentUI.isViewAction(typeAction);
-			ViewStudentUI.pourDataToFields(id, name, gender, className, cellPhone, dob, email);
+			ViewStudentUI.pourDataToFields(id, name, gender, className, cellPhone, dob, major);
 			ViewStudentUI.setVisible(true);
 		}
 	}
 
 	private Object[] getIdReaders() {
 		// TODO Auto-generated method stub
-		List<Student> listReaders = rentbook.findAll();
+		List<Student> listReaders = studentController.findAll();
 		Object[] idArr = new Object[listReaders.size()];
 
 		for (int i = 0; i < listReaders.size(); i++) {
 			idArr[i] = listReaders.get(i).getId();
-
 		}
 
 		return idArr;

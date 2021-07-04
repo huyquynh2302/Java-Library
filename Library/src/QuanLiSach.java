@@ -447,12 +447,12 @@ public class QuanLiSach extends JPanel {
 		
 		try {
 			Statement stmt = conn.createStatement();
-		ResultSet rs = stmt.executeQuery("select * from shelves");
-	    while(rs.next()){         
-	    	shelvesMap.put(rs.getString(1), rs.getString(2));
-	    	shelvesMapRev.put(rs.getString(2), rs.getString(1));
-	    	comboBox_1_1_1.addItem(rs.getString(2));
-	    }
+			ResultSet rs = stmt.executeQuery("select * from shelves");
+		    while(rs.next()){         
+		    	shelvesMap.put(rs.getString(1), rs.getString(2));
+		    	shelvesMapRev.put(rs.getString(2), rs.getString(1));
+		    	comboBox_1_1_1.addItem(rs.getString(2));
+		    }
 	    }
 	    catch(Exception e)
 	    {

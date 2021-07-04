@@ -203,7 +203,7 @@ public class MuonSach extends JPanel {
 					Date ngaytra = Date.valueOf(textField_3.getText());
 					int studentId = (int)comboBox.getSelectedItem();
 					System.out.println(staffId);
-					rentingBookController.add(studentId,1,bookId, ngaytra); 
+					rentingBookController.add(studentId,staffId,bookId, ngaytra); 
 					JOptionPane.showMessageDialog(null, "Thành công");
 					
 					

@@ -23,18 +23,12 @@ import java.text.SimpleDateFormat;
 import java.util.Vector;
 
 import javax.swing.JButton;
+import javax.swing.JLabel;
 
 public class themDocGia extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField txtMTh;
 	private JTextField txt_id;
-	private JTextField txtHTn;
-	private JTextField txtGiiTnh;
-	private JTextField txtNgySinh;
-	private JTextField txtCmnd;
-	private JTextField txtEmail;
-	private JTextField txtSinThoi;
 	private JTextField txt_name;
 	private JTextField txt_gender;
 	private JTextField txt_dob;
@@ -68,7 +62,7 @@ public class themDocGia extends JFrame {
 	
 	public void pourDataToFields(int id, String name, String gender, String className, String cellPhone, Date dob, String email)
 	{
-		txt_id.setText(id + "");
+		txt_id.setText(id +"");
 		txt_name.setText(name);
 		txt_gender.setText(gender);
 		txt_dob.setText(dob.toString());
@@ -112,11 +106,11 @@ public class themDocGia extends JFrame {
 					txt_name.getText(),
 					"",
 					"",
-					txt_gender.equals("Nam")?1:2,
+					txt_gender.equals("Nam")?1:0,
 					date,
-					"",
-					txt_className.getText(),
 					txt_email.getText(),
+					txt_className.getText(),
+					"",
 					txt_cellPhone.getText()
 					);
 			
@@ -168,103 +162,82 @@ public class themDocGia extends JFrame {
 		contentPane.add(panel);
 		panel.setLayout(null);
 		
-		txtMTh = new JTextField();
-		txtMTh.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		txtMTh.setText("M\u00E3 th\u1EBB:");
-		txtMTh.setHorizontalAlignment(SwingConstants.LEFT);
-		txtMTh.setBounds(83, 21, 150, 32);
-		panel.add(txtMTh);
-		txtMTh.setColumns(10);
-		
 		txt_id = new JTextField();
-		txt_id.setBounds(283, 21, 150, 32);
+		txt_id.setBounds(225, 21, 208, 32);
 		panel.add(txt_id);
 		txt_id.setColumns(10);
 		
-		txtHTn = new JTextField();
-		txtHTn.setText("H\u1ECD T\u00EAn:");
-		txtHTn.setHorizontalAlignment(SwingConstants.LEFT);
-		txtHTn.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		txtHTn.setColumns(10);
-		txtHTn.setBounds(83, 71, 150, 32);
-		panel.add(txtHTn);
-		
-		txtGiiTnh = new JTextField();
-		txtGiiTnh.setText("Gi\u1EDBi T\u00EDnh:");
-		txtGiiTnh.setHorizontalAlignment(SwingConstants.LEFT);
-		txtGiiTnh.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		txtGiiTnh.setColumns(10);
-		txtGiiTnh.setBounds(83, 121, 150, 32);
-		panel.add(txtGiiTnh);
-		
-		txtNgySinh = new JTextField();
-		txtNgySinh.setText("Ng\u00E0y Sinh:");
-		txtNgySinh.setHorizontalAlignment(SwingConstants.LEFT);
-		txtNgySinh.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		txtNgySinh.setColumns(10);
-		txtNgySinh.setBounds(83, 171, 150, 32);
-		panel.add(txtNgySinh);
-		
-		txtCmnd = new JTextField();
-		txtCmnd.setText("L\u1EDBp:");
-		txtCmnd.setHorizontalAlignment(SwingConstants.LEFT);
-		txtCmnd.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		txtCmnd.setColumns(10);
-		txtCmnd.setBounds(83, 221, 150, 32);
-		panel.add(txtCmnd);
-		
-		txtEmail = new JTextField();
-		txtEmail.setText("Email:");
-		txtEmail.setHorizontalAlignment(SwingConstants.LEFT);
-		txtEmail.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		txtEmail.setColumns(10);
-		txtEmail.setBounds(83, 271, 150, 32);
-		panel.add(txtEmail);
-		
-		txtSinThoi = new JTextField();
-		txtSinThoi.setText("S\u1ED1 \u0110i\u1EC7n Tho\u1EA1i:");
-		txtSinThoi.setHorizontalAlignment(SwingConstants.LEFT);
-		txtSinThoi.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		txtSinThoi.setColumns(10);
-		txtSinThoi.setBounds(83, 321, 150, 32);
-		panel.add(txtSinThoi);
-		
 		txt_name = new JTextField();
 		txt_name.setColumns(10);
-		txt_name.setBounds(283, 71, 150, 32);
+		txt_name.setBounds(225, 71, 208, 32);
 		panel.add(txt_name);
 		
 		txt_gender = new JTextField();
 		txt_gender.setColumns(10);
-		txt_gender.setBounds(283, 121, 150, 32);
+		txt_gender.setBounds(225, 121, 208, 32);
 		panel.add(txt_gender);
 		
 		txt_dob = new JTextField();
 		txt_dob.setColumns(10);
-		txt_dob.setBounds(283, 171, 150, 32);
+		txt_dob.setBounds(225, 171, 208, 32);
 		panel.add(txt_dob);
 		
 		txt_className = new JTextField();
 		txt_className.setColumns(10);
-		txt_className.setBounds(283, 221, 150, 32);
+		txt_className.setBounds(225, 221, 208, 32);
 		panel.add(txt_className);
 		
 		txt_email = new JTextField();
 		txt_email.setColumns(10);
-		txt_email.setBounds(283, 271, 150, 32);
+		txt_email.setBounds(225, 271, 208, 32);
 		panel.add(txt_email);
 		
 		txt_cellPhone = new JTextField();
 		txt_cellPhone.setColumns(10);
-		txt_cellPhone.setBounds(283, 321, 150, 32);
+		txt_cellPhone.setBounds(225, 321, 208, 32);
 		panel.add(txt_cellPhone);
 		
-		btn_update = new JButton("Chỉnh sửa");
+		btn_update = new JButton("Ch\u1EC9nh s\u1EEDa");
 		btn_update.setForeground(Color.WHITE);
 		btn_update.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		btn_update.setBounds(309, 374, 124, 32);
 		panel.add(btn_update);
 		btn_update.setBackground(new Color(61, 157, 245));
+		
+		JLabel lblNewLabel = new JLabel("M\u00E3 \u0111\u1ED9c gi\u1EA3");
+		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		lblNewLabel.setBounds(56, 21, 106, 24);
+		panel.add(lblNewLabel);
+		
+		JLabel lblHTn = new JLabel("H\u1ECD t\u00EAn");
+		lblHTn.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		lblHTn.setBounds(56, 71, 106, 24);
+		panel.add(lblHTn);
+		
+		JLabel lblGiiTnh = new JLabel("Gi\u1EDBi t\u00EDnh");
+		lblGiiTnh.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		lblGiiTnh.setBounds(56, 129, 106, 24);
+		panel.add(lblGiiTnh);
+		
+		JLabel lblNgySinh = new JLabel("Ng\u00E0y sinh");
+		lblNgySinh.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		lblNgySinh.setBounds(56, 171, 106, 24);
+		panel.add(lblNgySinh);
+		
+		JLabel lblLp = new JLabel("L\u1EDBp");
+		lblLp.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		lblLp.setBounds(56, 229, 106, 24);
+		panel.add(lblLp);
+		
+		JLabel lblKhoa = new JLabel("Khoa");
+		lblKhoa.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		lblKhoa.setBounds(56, 279, 106, 24);
+		panel.add(lblKhoa);
+		
+		JLabel lblSinThoi = new JLabel("S\u1ED1 \u0111i\u1EC7n tho\u1EA1i");
+		lblSinThoi.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		lblSinThoi.setBounds(58, 329, 124, 24);
+		panel.add(lblSinThoi);
 		
 		btn_update.addMouseListener(new MouseAdapter() {
 			@Override
@@ -274,6 +247,4 @@ public class themDocGia extends JFrame {
 			}
 		});
 	}
-
-
 }

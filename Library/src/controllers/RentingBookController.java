@@ -6,6 +6,8 @@ import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.sql.Date;
 
 import javax.swing.JTable;
@@ -18,6 +20,76 @@ import models.Student;
 public class RentingBookController {
 	static Connection conn = DBConnection.connect();
 	public static String tableName = "renting_books";
+	
+	public static boolean updateActualReturnDate(int id) {
+		String sql = "UPDATE `renting_books` SET actual_return_date=now() where id =" + id ;
+		try {
+			PreparedStatement stmt = conn.prepareStatement(sql);
+			return stmt.executeUpdate() > 0;
+		}catch(Exception ex) {
+			ex.printStackTrace();
+		}
+		return false;
+	}
+	
+	public static boolean loadSearchResultTable(JTable UITable, int studentId, String dateMax, String dateMin )
+	{
+		
+		String sql = "SELECT S.student_name, R.id, S.contact_number,R.createdAt, R.return_date, St.staff_name, R.actual_return_date, B.book_name "
+				+ "FROM renting_books R, students S, staffs St, books B "
+				+ "WHERE B.id = R.book_id AND  R.student_id = S.id AND St.id = R.staff_id";
+			
+		if( checkRegexDate(dateMax) ) {
+			sql = sql + " AND R.return_date <='" + dateMax + "' ";
+		}
+		if(checkRegexDate(dateMin)) {
+			sql = sql + " AND R.return_date >='" + dateMin + "' "; 
+		}
+		if(studentId !=-1) {
+			sql = sql + " AND S.id = "+ studentId;
+		}
+			
+		try {
+			Statement stmt = conn.createStatement();
+			System.out.println(sql);
+			ResultSet rs = stmt.executeQuery(sql);
+			ResultSetMetaData md = rs.getMetaData();
+
+			int columnCount = md.getColumnCount() + 1;
+			
+            String[] cols = new String[columnCount];
+            DefaultTableModel model = (DefaultTableModel) UITable.getModel();
+            int index = 0;
+            model.setRowCount(0);
+            while (rs.next())
+            {
+               index++;
+               Object[] row = new Object[columnCount];
+               row[0] = index;
+               row[1] = rs.getString(1);
+               row[2] = rs.getInt(2);
+               row[3] = rs.getString(3);
+               row[4] = rs.getDate(4);
+               row[5] = rs.getDate(5);
+               row[6] = rs.getString(6);
+               if(rs.getDate(7) == null) {
+            	   row[7] = "Chưa trả sách";
+               } else {
+            	   row[7] = rs.getDate(5).compareTo(rs.getDate(7)) > 0?"Đã trả sách":"Trả quá hạn";
+               }
+               row[8] = rs.getString(8);
+               model.addRow(row);
+            }
+           UITable.setModel(model);
+           model.fireTableDataChanged();
+           return true;
+		} catch (SQLException e) {
+			
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return false;
+	}
 	
 	public void add(int studentId, int staffId, int bookId, Date returnDay) { 
 		try {
@@ -37,7 +109,6 @@ public class RentingBookController {
 			
 		}
 	}
-	
 	
 	public void loadRentingBooksByStudentTable(JTable RBTable, int studentId ) {
 		//System.out.println(studentId);
@@ -75,7 +146,7 @@ public class RentingBookController {
 		
 	}
 	
-	public void loadUITable(JTable UITable)
+	public static void loadUITable(JTable UITable)
 	{
 		String sql = "SELECT S.student_name, R.id, S.contact_number,R.createdAt, R.return_date, St.staff_name, R.actual_return_date, B.book_name FROM renting_books R, students S, staffs St, books B WHERE B.id = R.book_id AND  R.student_id = S.id AND St.id = R.staff_id";
 		
@@ -85,7 +156,7 @@ public class RentingBookController {
 			ResultSet rs = stmt.executeQuery(sql);
 			ResultSetMetaData md = rs.getMetaData();
 
-			int columnCount = md.getColumnCount();
+			int columnCount = md.getColumnCount()+1;
 			
             String[] cols = new String[columnCount];
             DefaultTableModel model = (DefaultTableModel) UITable.getModel();
@@ -102,7 +173,12 @@ public class RentingBookController {
                row[4] = rs.getDate(4);
                row[5] = rs.getDate(5);
                row[6] = rs.getString(6);
-               row[7] = rs.getDate(5).compareTo(rs.getDate(7)) > 0?"Ä�Ã£ tráº£ sÃ¡ch":"ChÆ°a tráº£ sÃ¡ch";
+               if(rs.getDate(7) == null) {
+            	   row[7] = "Chưa trả sách";
+               } else {
+            	   row[7] = rs.getDate(5).compareTo(rs.getDate(7)) > 0?"Đã trả sách":"Trả quá hạn";
+               }
+               row[8] = rs.getString(8);
                model.addRow(row);
             }
             
@@ -194,6 +270,12 @@ public class RentingBookController {
 		}
 		
 		return null;
+	}
+	
+	public static boolean checkRegexDate(String date) {
+		Pattern pattern = Pattern.compile("^\\d{4}\\-(0?[1-9]|1[012])\\-(0?[1-9]|[12][0-9]|3[01])$");
+		Matcher matcher = pattern.matcher(date);
+		return matcher.find();
 	}
 	
 	public static void main(String[] args)
