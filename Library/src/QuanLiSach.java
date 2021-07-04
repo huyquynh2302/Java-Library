@@ -12,6 +12,8 @@ import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JDialog;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -182,7 +184,7 @@ public class QuanLiSach extends JPanel {
 		add(textField_5);
 		
 		JButton btnNewButton = new JButton("Th\u00EAm");
-		btnNewButton.setBounds(233, 316, 87, 23);
+		btnNewButton.setBounds(381, 316, 87, 23);
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(textField.getText().isEmpty() && textField_1.getText().isEmpty()) {
@@ -227,7 +229,7 @@ public class QuanLiSach extends JPanel {
 		add(btnNewButton);
 		
 		JButton btnNewButton_1 = new JButton("Xo\u0301a");
-		btnNewButton_1.setBounds(429, 316, 87, 23);
+		btnNewButton_1.setBounds(577, 316, 87, 23);
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(textField.getText().isEmpty() && textField_1.getText().isEmpty()) {
@@ -250,7 +252,7 @@ public class QuanLiSach extends JPanel {
 		add(btnNewButton_1);
 		
 		JButton btnNewButton_1_1 = new JButton("S\u01B0\u0309a");
-		btnNewButton_1_1.setBounds(330, 316, 87, 23);
+		btnNewButton_1_1.setBounds(478, 316, 87, 23);
 		btnNewButton_1_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(textField.getText().isEmpty() && textField_1.getText().isEmpty()) {
@@ -376,6 +378,17 @@ public class QuanLiSach extends JPanel {
 		textField_4.setColumns(10);
 		textField_4.setBounds(489, 198, 175, 20);
 		add(textField_4);
+		
+		JButton btnTmKim = new JButton("Tìm kiếm");
+		btnTmKim.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				JDialog timkiemsach = new TimKiemDialog();
+				timkiemsach.setVisible(true);
+				timkiemsach.setLocationRelativeTo(null);
+			}
+		});
+		btnTmKim.setBounds(255, 316, 87, 23);
+		add(btnTmKim);
 		
 
 		
